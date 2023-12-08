@@ -1,0 +1,186 @@
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\OrdenaCuenta.exe.config
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\OrdenaCuenta.exe
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\OrdenaCuenta.pdb
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.csproj.AssemblyReference.cache
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.Properties.Resources.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.csproj.GenerateResource.cache
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.csproj.CoreCompileInputs.cache
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.exe
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.pdb
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\MaterialSkin.dll
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.csproj.CopyComplete
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.Form1.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.Mainfrm.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Cuentasfrm.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\System.Configuration.ConfigurationManager.dll
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\System.Security.AccessControl.dll
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\System.Security.Permissions.dll
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\System.Security.Principal.Windows.dll
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\System.Configuration.ConfigurationManager.xml
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\System.Security.AccessControl.xml
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\System.Security.Permissions.xml
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\System.Security.Principal.Windows.xml
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.MesanjeSioNo.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.CuentaAddfrm.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Partidafrm.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Cliente.ClienteAdd.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Cliente.ClienteShow.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Rolfrm.RolAdd.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Rolfrm.Rolshow.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Usuariofrm.UsuarioAdd.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Usuariofrm.UsuarioShow.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Usuariofrm.Loginfrmshow.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Proveedores.Proveedoresshow.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Proveedores.Proveedoresadd.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.TipoMoneda.TipoMonedaaddfrm.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.TipoMoneda.TipoMonedashowfrm.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.HistoricoMoneda.HistoricoMonedaaddfrm.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.HistoricoMoneda.HistoricoMonedashowfrm.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Cuentas.SubcuentasAdd.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Cliente.PagaClientefrm.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Proveedores.PagoProveedoresfrm.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.periodo.PeriodoAdd.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.periodo.periodoshowfrmcs.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.periodo.CierrePeriodo.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.periodosaldohis.periodosaldohisshow.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Menus.MenuCliente.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Menus.MenuContabilidadcs.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Menus.MenuMantenimientos.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Menus.MenuProveedor.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Menus.MenuSeguridad.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Menus.MenusReportes.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Reportes.movdiariorpt.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Reportes.MovCuentasfrmcs.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.periodofiscal.Periodofiscalshow.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.periodofiscal.Periodofiscaladd.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.transacciones.transaccionesAdd.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.transacciones.transaccionesshow.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.opciones.opcionesAdd.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.opciones.opcionesShow.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.opciones.usuariorolesShow.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.opciones.usuariorolesAdd.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.opciones.rolesopcionesAdd.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.opciones.rolesopcionesShow.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\EPPlus.dll
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\EPPlus.Interfaces.dll
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\EPPlus.System.Drawing.dll
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\System.ComponentModel.Annotations.dll
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\EPPlus.xml
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Reportes.estcuentaproveedor.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\ClosedXML.dll
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\DocumentFormat.OpenXml.dll
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\ExcelNumberFormat.dll
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\Irony.dll
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\SixLabors.Fonts.dll
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\System.Buffers.dll
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\System.IO.Packaging.dll
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\System.Memory.dll
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\XLParser.dll
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\ClosedXML.xml
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\DocumentFormat.OpenXml.xml
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\ExcelNumberFormat.xml
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\SixLabors.Fonts.xml
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\System.Buffers.xml
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\System.IO.Packaging.xml
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\System.Memory.xml
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Reportes.MovestadoCuentasfrm.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Reportes.balancegenfrm.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.exe
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.pdb
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\OrdenaCuenta.exe.config
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\OrdenaCuenta.exe
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\OrdenaCuenta.pdb
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\ClosedXML.dll
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\DocumentFormat.OpenXml.dll
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\EPPlus.dll
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\EPPlus.Interfaces.dll
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\EPPlus.System.Drawing.dll
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\ExcelNumberFormat.dll
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\Irony.dll
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\MaterialSkin.dll
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\SixLabors.Fonts.dll
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\System.Buffers.dll
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\System.ComponentModel.Annotations.dll
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\System.Configuration.ConfigurationManager.dll
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\System.IO.Packaging.dll
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\System.Memory.dll
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\System.Security.AccessControl.dll
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\System.Security.Permissions.dll
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\System.Security.Principal.Windows.dll
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\XLParser.dll
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\ClosedXML.xml
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\DocumentFormat.OpenXml.xml
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\EPPlus.xml
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\ExcelNumberFormat.xml
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\SixLabors.Fonts.xml
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\System.Buffers.xml
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\System.Configuration.ConfigurationManager.xml
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\System.IO.Packaging.xml
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\System.Memory.xml
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\System.Security.AccessControl.xml
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\System.Security.Permissions.xml
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\bin\Debug\System.Security.Principal.Windows.xml
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.Form1.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Cliente.ClienteAdd.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Cliente.ClienteShow.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Cliente.PagaClientefrm.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.CuentaAddfrm.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Cuentasfrm.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Cuentas.SubcuentasAdd.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.HistoricoMoneda.HistoricoMonedaaddfrm.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.HistoricoMoneda.HistoricoMonedashowfrm.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.Mainfrm.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.Properties.Resources.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Menus.MenuCliente.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Menus.MenuContabilidadcs.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Menus.MenuMantenimientos.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Menus.MenuProveedor.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Menus.MenuSeguridad.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Menus.MenusReportes.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.MesanjeSioNo.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.opciones.opcionesAdd.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.opciones.opcionesShow.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.opciones.rolesopcionesAdd.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.opciones.rolesopcionesShow.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.opciones.usuariorolesAdd.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.opciones.usuariorolesShow.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Partidafrm.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.periodofiscal.Periodofiscaladd.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.periodofiscal.Periodofiscalshow.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.periodosaldohis.periodosaldohisshow.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.periodo.CierrePeriodo.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.periodo.PeriodoAdd.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.periodo.periodoshowfrmcs.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Proveedores.PagoProveedoresfrm.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Proveedores.Proveedoresadd.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Proveedores.Proveedoresshow.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Reportes.balancegenfrm.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Reportes.estcuentaproveedor.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Reportes.MovestadoCuentasfrm.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Reportes.MovCuentasfrmcs.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Reportes.movdiariorpt.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Rolfrm.RolAdd.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Rolfrm.Rolshow.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.TipoMoneda.TipoMonedaaddfrm.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.TipoMoneda.TipoMonedashowfrm.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.transacciones.transaccionesAdd.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.transacciones.transaccionesshow.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Usuariofrm.Loginfrmshow.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Usuariofrm.UsuarioAdd.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Usuariofrm.UsuarioShow.resources
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.csproj.GenerateResource.cache
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.csproj.CoreCompileInputs.cache
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.csproj.CopyComplete
+C:\Users\Yanori Osorto\Downloads\OrdenaCuenta-main (2)\OrdenaCuenta-main\OrdenaCuenta\obj\Debug\OrdenaCuenta.csproj.AssemblyReference.cache

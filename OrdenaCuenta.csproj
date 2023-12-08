@@ -1,0 +1,688 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{45D15791-499A-466C-A149-92705215BB02}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>OrdenaCuenta</RootNamespace>
+    <AssemblyName>OrdenaCuenta</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ClosedXML, Version=0.102.1.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.102.1\lib\netstandard2.0\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.16.0.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.16.0\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=7.0.1.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.7.0.1\lib\net462\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.Interfaces, Version=6.1.1.0, Culture=neutral, PublicKeyToken=a694d7f3b0907a61, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.Interfaces.6.1.1\lib\net462\EPPlus.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.System.Drawing, Version=6.1.1.0, Culture=neutral, PublicKeyToken=2308d35469c9bac0, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.System.Drawing.6.1.1\lib\net462\EPPlus.System.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.1.0.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelNumberFormat.1.1.0\lib\net20\ExcelNumberFormat.dll</HintPath>
+    </Reference>
+    <Reference Include="Irony, Version=1.0.11.0, Culture=neutral, PublicKeyToken=ca48ace7223ead47, processorArchitecture=MSIL">
+      <HintPath>..\packages\Irony.NetCore.1.0.11\lib\net461\Irony.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialSkin, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialSkin.2.2.3.1\lib\net461\MaterialSkin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.1.4.1\lib\net46\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="SixLabors.Fonts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
+      <HintPath>..\packages\SixLabors.Fonts.1.0.0\lib\netstandard2.0\SixLabors.Fonts.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Configuration.ConfigurationManager.7.0.0\lib\net462\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Packaging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Packaging.6.0.0\lib\net461\System.IO.Packaging.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.AccessControl, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.AccessControl.6.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Permissions, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Permissions.7.0.0\lib\net462\System.Security.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Text.RegularExpressions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.RegularExpressions.4.3.1\lib\net463\System.Text.RegularExpressions.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="XLParser, Version=1.5.2.0, Culture=neutral, PublicKeyToken=63397e1e46bb91b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\XLParser.1.5.2\lib\net461\XLParser.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controller\ClasificacionCuentaController.cs" />
+    <Compile Include="Controller\ClienteController.cs" />
+    <Compile Include="Controller\CorrelativoController.cs" />
+    <Compile Include="Controller\CuentaController.cs" />
+    <Compile Include="Controller\HistoricoMonedaController.cs" />
+    <Compile Include="Controller\LibroController.cs" />
+    <Compile Include="Controller\opcionesController.cs" />
+    <Compile Include="Controller\PartidaController.cs" />
+    <Compile Include="Controller\PeriodoContableController.cs" />
+    <Compile Include="Controller\periodofiscalController.cs" />
+    <Compile Include="Controller\periodoinformeController.cs" />
+    <Compile Include="Controller\periodosaldohisController.cs" />
+    <Compile Include="Controller\ProveedoresController.cs" />
+    <Compile Include="Controller\RolController.cs" />
+    <Compile Include="Controller\rolesopcionesController.cs" />
+    <Compile Include="Controller\subcuentaController.cs" />
+    <Compile Include="Controller\TipoMonedaController.cs" />
+    <Compile Include="Controller\TipoPagoController.cs" />
+    <Compile Include="Controller\tipoTransaccionesController.cs" />
+    <Compile Include="Controller\UsuarioController.cs" />
+    <Compile Include="Controller\usuariorolesController.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frmenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frmenu.Designer.cs">
+      <DependentUpon>Frmenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ClasificacionCuenta.cs" />
+    <Compile Include="Model\ClienteModel.cs" />
+    <Compile Include="Model\Conexion.cs" />
+    <Compile Include="Model\Correlativo.cs" />
+    <Compile Include="Model\Cuenta.cs" />
+    <Compile Include="Model\HistoricoMonedaModel.cs" />
+    <Compile Include="Model\opcionesmodel.cs" />
+    <Compile Include="Model\Partida.cs" />
+    <Compile Include="Model\PeriodoContableModel.cs" />
+    <Compile Include="Model\periodofiscalModel.cs" />
+    <Compile Include="Model\periodoinformeModel.cs" />
+    <Compile Include="Model\periodosaldohisModel.cs" />
+    <Compile Include="Model\ProveedoresModel.cs" />
+    <Compile Include="Model\rolesopcionesModel.cs" />
+    <Compile Include="Model\RolModel.cs" />
+    <Compile Include="Model\subcuentaModel.cs" />
+    <Compile Include="Model\TipoMonedaModel.cs" />
+    <Compile Include="Model\tipoTransaccionesModel.cs" />
+    <Compile Include="Model\UsuarioModel.cs" />
+    <Compile Include="Model\usuariorolesModel.cs" />
+    <Compile Include="Utilities\DocumentacionRequerida.cs" />
+    <Compile Include="Utilities\exportaexcel.cs" />
+    <Compile Include="Utilities\Filtros.cs" />
+    <Compile Include="Utilities\Seguridad.cs" />
+    <Compile Include="View\Cliente\ClienteAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Cliente\ClienteAdd.Designer.cs">
+      <DependentUpon>ClienteAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Cliente\ClienteShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Cliente\ClienteShow.Designer.cs">
+      <DependentUpon>ClienteShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Cliente\PagaClientefrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Cliente\PagaClientefrm.Designer.cs">
+      <DependentUpon>PagaClientefrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\CuentaAddfrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\CuentaAddfrm.Designer.cs">
+      <DependentUpon>CuentaAddfrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Cuentasfrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Cuentasfrm.Designer.cs">
+      <DependentUpon>Cuentasfrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Cuentas\SubcuentasAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Cuentas\SubcuentasAdd.Designer.cs">
+      <DependentUpon>SubcuentasAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\HistoricoMoneda\HistoricoMonedaaddfrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\HistoricoMoneda\HistoricoMonedaaddfrm.Designer.cs">
+      <DependentUpon>HistoricoMonedaaddfrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\HistoricoMoneda\HistoricoMonedashowfrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\HistoricoMoneda\HistoricoMonedashowfrm.Designer.cs">
+      <DependentUpon>HistoricoMonedashowfrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Mainfrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Mainfrm.Designer.cs">
+      <DependentUpon>Mainfrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\MaterialFrmEstilo.cs" />
+    <Compile Include="View\Menus\MenuCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Menus\MenuCliente.Designer.cs">
+      <DependentUpon>MenuCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Menus\MenuContabilidadcs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Menus\MenuContabilidadcs.Designer.cs">
+      <DependentUpon>MenuContabilidadcs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Menus\MenuMantenimientos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Menus\MenuMantenimientos.Designer.cs">
+      <DependentUpon>MenuMantenimientos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Menus\MenuProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Menus\MenuProveedor.Designer.cs">
+      <DependentUpon>MenuProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Menus\MenuSeguridad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Menus\MenuSeguridad.Designer.cs">
+      <DependentUpon>MenuSeguridad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Menus\MenusReportes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Menus\MenusReportes.Designer.cs">
+      <DependentUpon>MenusReportes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\MesanjeSioNo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\MesanjeSioNo.Designer.cs">
+      <DependentUpon>MesanjeSioNo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\opciones\opcionesAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\opciones\opcionesAdd.Designer.cs">
+      <DependentUpon>opcionesAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\opciones\opcionesShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\opciones\opcionesShow.Designer.cs">
+      <DependentUpon>opcionesShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\opciones\rolesopcionesAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\opciones\rolesopcionesAdd.Designer.cs">
+      <DependentUpon>rolesopcionesAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\opciones\rolesopcionesShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\opciones\rolesopcionesShow.Designer.cs">
+      <DependentUpon>rolesopcionesShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\opciones\usuariorolesAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\opciones\usuariorolesAdd.Designer.cs">
+      <DependentUpon>usuariorolesAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\opciones\usuariorolesShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\opciones\usuariorolesShow.Designer.cs">
+      <DependentUpon>usuariorolesShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Partidafrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Partidafrm.Designer.cs">
+      <DependentUpon>Partidafrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\periodofiscal\Periodofiscaladd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\periodofiscal\Periodofiscaladd.Designer.cs">
+      <DependentUpon>Periodofiscaladd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\periodofiscal\Periodofiscalshow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\periodofiscal\Periodofiscalshow.Designer.cs">
+      <DependentUpon>Periodofiscalshow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\periodosaldohis\periodosaldohisshow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\periodosaldohis\periodosaldohisshow.Designer.cs">
+      <DependentUpon>periodosaldohisshow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\periodo\CierrePeriodo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\periodo\CierrePeriodo.Designer.cs">
+      <DependentUpon>CierrePeriodo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\periodo\PeriodoAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\periodo\PeriodoAdd.Designer.cs">
+      <DependentUpon>PeriodoAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\periodo\periodoshowfrmcs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\periodo\periodoshowfrmcs.Designer.cs">
+      <DependentUpon>periodoshowfrmcs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Proveedores\PagoProveedoresfrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Proveedores\PagoProveedoresfrm.Designer.cs">
+      <DependentUpon>PagoProveedoresfrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Proveedores\Proveedoresadd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Proveedores\Proveedoresadd.Designer.cs">
+      <DependentUpon>Proveedoresadd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Proveedores\Proveedoresshow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Proveedores\Proveedoresshow.Designer.cs">
+      <DependentUpon>Proveedoresshow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reportes\balancegenfrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Reportes\balancegenfrm.Designer.cs">
+      <DependentUpon>balancegenfrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reportes\estcuentaproveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Reportes\estcuentaproveedor.Designer.cs">
+      <DependentUpon>estcuentaproveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reportes\MovestadoCuentasfrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Reportes\MovestadoCuentasfrm.Designer.cs">
+      <DependentUpon>MovestadoCuentasfrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reportes\MovCuentasfrmcs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Reportes\MovCuentasfrmcs.Designer.cs">
+      <DependentUpon>MovCuentasfrmcs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reportes\movdiariorpt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Reportes\movdiariorpt.Designer.cs">
+      <DependentUpon>movdiariorpt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Rolfrm\RolAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Rolfrm\RolAdd.Designer.cs">
+      <DependentUpon>RolAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Rolfrm\Rolshow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Rolfrm\Rolshow.Designer.cs">
+      <DependentUpon>Rolshow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\TipoMoneda\TipoMonedaaddfrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\TipoMoneda\TipoMonedaaddfrm.Designer.cs">
+      <DependentUpon>TipoMonedaaddfrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\TipoMoneda\TipoMonedashowfrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\TipoMoneda\TipoMonedashowfrm.Designer.cs">
+      <DependentUpon>TipoMonedashowfrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\transacciones\transaccionesAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\transacciones\transaccionesAdd.Designer.cs">
+      <DependentUpon>transaccionesAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\transacciones\transaccionesshow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\transacciones\transaccionesshow.Designer.cs">
+      <DependentUpon>transaccionesshow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Usuariofrm\Loginfrmshow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Usuariofrm\Loginfrmshow.Designer.cs">
+      <DependentUpon>Loginfrmshow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Usuariofrm\UsuarioAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Usuariofrm\UsuarioAdd.Designer.cs">
+      <DependentUpon>UsuarioAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Usuariofrm\UsuarioShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Usuariofrm\UsuarioShow.Designer.cs">
+      <DependentUpon>UsuarioShow.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Cliente\ClienteAdd.resx">
+      <DependentUpon>ClienteAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Cliente\ClienteShow.resx">
+      <DependentUpon>ClienteShow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Cliente\PagaClientefrm.resx">
+      <DependentUpon>PagaClientefrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\CuentaAddfrm.resx">
+      <DependentUpon>CuentaAddfrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Cuentasfrm.resx">
+      <DependentUpon>Cuentasfrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Cuentas\SubcuentasAdd.resx">
+      <DependentUpon>SubcuentasAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\HistoricoMoneda\HistoricoMonedaaddfrm.resx">
+      <DependentUpon>HistoricoMonedaaddfrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\HistoricoMoneda\HistoricoMonedashowfrm.resx">
+      <DependentUpon>HistoricoMonedashowfrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Mainfrm.resx">
+      <DependentUpon>Mainfrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="View\Menus\MenuCliente.resx">
+      <DependentUpon>MenuCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Menus\MenuContabilidadcs.resx">
+      <DependentUpon>MenuContabilidadcs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Menus\MenuMantenimientos.resx">
+      <DependentUpon>MenuMantenimientos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Menus\MenuProveedor.resx">
+      <DependentUpon>MenuProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Menus\MenuSeguridad.resx">
+      <DependentUpon>MenuSeguridad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Menus\MenusReportes.resx">
+      <DependentUpon>MenusReportes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\MesanjeSioNo.resx">
+      <DependentUpon>MesanjeSioNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\opciones\opcionesAdd.resx">
+      <DependentUpon>opcionesAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\opciones\opcionesShow.resx">
+      <DependentUpon>opcionesShow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\opciones\rolesopcionesAdd.resx">
+      <DependentUpon>rolesopcionesAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\opciones\rolesopcionesShow.resx">
+      <DependentUpon>rolesopcionesShow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\opciones\usuariorolesAdd.resx">
+      <DependentUpon>usuariorolesAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\opciones\usuariorolesShow.resx">
+      <DependentUpon>usuariorolesShow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Partidafrm.resx">
+      <DependentUpon>Partidafrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\periodofiscal\Periodofiscaladd.resx">
+      <DependentUpon>Periodofiscaladd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\periodofiscal\Periodofiscalshow.resx">
+      <DependentUpon>Periodofiscalshow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\periodosaldohis\periodosaldohisshow.resx">
+      <DependentUpon>periodosaldohisshow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\periodo\CierrePeriodo.resx">
+      <DependentUpon>CierrePeriodo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\periodo\PeriodoAdd.resx">
+      <DependentUpon>PeriodoAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\periodo\periodoshowfrmcs.resx">
+      <DependentUpon>periodoshowfrmcs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Proveedores\PagoProveedoresfrm.resx">
+      <DependentUpon>PagoProveedoresfrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Proveedores\Proveedoresadd.resx">
+      <DependentUpon>Proveedoresadd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Proveedores\Proveedoresshow.resx">
+      <DependentUpon>Proveedoresshow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reportes\balancegenfrm.resx">
+      <DependentUpon>balancegenfrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reportes\estcuentaproveedor.resx">
+      <DependentUpon>estcuentaproveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reportes\MovestadoCuentasfrm.resx">
+      <DependentUpon>MovestadoCuentasfrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reportes\MovCuentasfrmcs.resx">
+      <DependentUpon>MovCuentasfrmcs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reportes\movdiariorpt.resx">
+      <DependentUpon>movdiariorpt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Rolfrm\RolAdd.resx">
+      <DependentUpon>RolAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Rolfrm\Rolshow.resx">
+      <DependentUpon>Rolshow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\TipoMoneda\TipoMonedaaddfrm.resx">
+      <DependentUpon>TipoMonedaaddfrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\TipoMoneda\TipoMonedashowfrm.resx">
+      <DependentUpon>TipoMonedashowfrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\transacciones\transaccionesAdd.resx">
+      <DependentUpon>transaccionesAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\transacciones\transaccionesshow.resx">
+      <DependentUpon>transaccionesshow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Usuariofrm\Loginfrmshow.resx">
+      <DependentUpon>Loginfrmshow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Usuariofrm\UsuarioAdd.resx">
+      <DependentUpon>UsuarioAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Usuariofrm\UsuarioShow.resx">
+      <DependentUpon>UsuarioShow.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1486485588-add-create-new-math-sign-cross-plus_81186.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Plus_36851.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_insert_plus_icon_149546.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_insert_plus_icon_1495461.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\seo-social-web-network-internet_262_icon-icons.com_61518.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1497559423-upload-file_85001.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

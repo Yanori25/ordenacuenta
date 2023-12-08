@@ -1,0 +1,4002 @@
+USE [master]
+GO
+/****** Object:  Database [ordenacuenta]    Script Date: 2023-11-22 10:54:39 AM ******/
+CREATE DATABASE [ordenacuenta]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'ordenacuenta', FILENAME = N'G:\SQLDATA\ordenacuenta.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'ordenacuenta_log', FILENAME = N'E:\SQLLOGS\ordenacuenta_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT
+GO
+ALTER DATABASE [ordenacuenta] SET COMPATIBILITY_LEVEL = 140
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [ordenacuenta].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [ordenacuenta] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [ordenacuenta] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [ordenacuenta] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [ordenacuenta] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [ordenacuenta] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [ordenacuenta] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [ordenacuenta] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [ordenacuenta] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [ordenacuenta] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [ordenacuenta] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [ordenacuenta] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [ordenacuenta] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [ordenacuenta] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [ordenacuenta] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [ordenacuenta] SET  ENABLE_BROKER 
+GO
+ALTER DATABASE [ordenacuenta] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [ordenacuenta] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [ordenacuenta] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [ordenacuenta] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [ordenacuenta] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [ordenacuenta] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [ordenacuenta] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [ordenacuenta] SET RECOVERY FULL 
+GO
+ALTER DATABASE [ordenacuenta] SET  MULTI_USER 
+GO
+ALTER DATABASE [ordenacuenta] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [ordenacuenta] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [ordenacuenta] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [ordenacuenta] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [ordenacuenta] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [ordenacuenta] SET QUERY_STORE = OFF
+GO
+USE [ordenacuenta]
+GO
+/****** Object:  User [mwipuser]    Script Date: 2023-11-22 10:54:40 AM ******/
+CREATE USER [mwipuser] FOR LOGIN [mwipuser] WITH DEFAULT_SCHEMA=[dbo]
+GO
+/****** Object:  User [HQ_FRUIT\rfune3]    Script Date: 2023-11-22 10:54:40 AM ******/
+CREATE USER [HQ_FRUIT\rfune3] FOR LOGIN [HQ_FRUIT\rfune3] WITH DEFAULT_SCHEMA=[dbo]
+GO
+ALTER ROLE [db_owner] ADD MEMBER [mwipuser]
+GO
+ALTER ROLE [db_datareader] ADD MEMBER [mwipuser]
+GO
+ALTER ROLE [db_datawriter] ADD MEMBER [mwipuser]
+GO
+ALTER ROLE [db_owner] ADD MEMBER [HQ_FRUIT\rfune3]
+GO
+ALTER ROLE [db_ddladmin] ADD MEMBER [HQ_FRUIT\rfune3]
+GO
+ALTER ROLE [db_datareader] ADD MEMBER [HQ_FRUIT\rfune3]
+GO
+ALTER ROLE [db_datawriter] ADD MEMBER [HQ_FRUIT\rfune3]
+GO
+/****** Object:  Table [dbo].[ClasificacionCuenta]    Script Date: 2023-11-22 10:54:40 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ClasificacionCuenta](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Clase] [varchar](100) NULL,
+	[TipoCuenta] [varchar](100) NULL,
+	[Naturaleza] [varchar](100) NULL,
+	[Activo] [bit] NULL,
+	[ClaIdempresa] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Cliente]    Script Date: 2023-11-22 10:54:40 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Cliente](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[Nombre] [varchar](1000) NULL,
+	[Apellido] [varchar](1000) NULL,
+	[Direccion] [varchar](1000) NULL,
+	[email] [varchar](100) NULL,
+	[Activo] [bit] NULL,
+	[FechaIngreso] [date] NULL,
+	[Telefono] [varchar](100) NULL,
+	[CliIdEmpresa] [int] NULL,
+	[Abono] [decimal](10, 4) NULL,
+	[CliTipMonid] [int] NULL,
+	[segundoNombre] [varchar](100) NULL,
+	[segundoApellido] [varchar](100) NULL,
+	[subcueidcli] [int] NULL,
+	[NombreCia] [varchar](1000) NULL,
+	[RTN] [varchar](1000) NULL,
+	[usuariocreacion] [varchar](100) NULL,
+	[fechamodificacion] [datetime] NULL,
+	[usuariomodifico] [varchar](100) NULL,
+	[fechacreacion] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Correlativo]    Script Date: 2023-11-22 10:54:40 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Correlativo](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Descripcion] [varchar](1000) NULL,
+	[Asiento] [int] NULL,
+	[Activo] [bit] NULL,
+	[CorrIdEmp] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Cuenta]    Script Date: 2023-11-22 10:54:40 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Cuenta](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[CuentaContable] [varchar](100) NULL,
+	[Descripcion] [varchar](100) NULL,
+	[ClaseCuentaId] [int] NULL,
+	[CuentaTipo] [varchar](10) NULL,
+	[MonedaId] [int] NULL,
+	[CueIdEmpresa] [int] NULL,
+	[Activo] [bit] NULL,
+	[cargacuenta] [decimal](10, 4) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[empresa]    Script Date: 2023-11-22 10:54:40 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[empresa](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Nombre] [varchar](100) NULL,
+	[Razon] [varchar](100) NULL,
+	[Activo] [bit] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[HistoricoMoneda]    Script Date: 2023-11-22 10:54:40 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[HistoricoMoneda](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[HistMon] [int] NULL,
+	[Fecha] [date] NULL,
+	[Valor] [decimal](10, 4) NULL,
+	[Activo] [bit] NULL,
+	[HistMonEmpresa] [int] NULL,
+	[usuariocreacion] [varchar](100) NULL,
+	[fechamodificacion] [datetime] NULL,
+	[usuariomodifico] [varchar](100) NULL,
+	[fechacreacion] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Libro]    Script Date: 2023-11-22 10:54:40 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Libro](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Descripcion] [varchar](100) NULL,
+	[Activo] [bit] NULL,
+	[libidemp] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Opciones]    Script Date: 2023-11-22 10:54:40 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Opciones](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Nombre] [varchar](1000) NULL,
+	[Nivel] [varchar](100) NULL,
+	[icono] [varchar](1000) NULL,
+	[rutafrm] [varchar](100) NULL,
+	[Activo] [bit] NULL,
+	[OpcionPadre] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Partida]    Script Date: 2023-11-22 10:54:40 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Partida](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Asiento] [int] NULL,
+	[Fecha] [date] NULL,
+	[CuentaPar] [int] NULL,
+	[Parcial] [int] NULL,
+	[Debe] [int] NULL,
+	[Haber] [int] NULL,
+	[FechaCreacion] [datetime] NULL,
+	[Activo] [bit] NULL,
+	[Referencia] [varchar](2000) NULL,
+	[ParIdEmpresa] [int] NULL,
+	[ParIdLibro] [int] NULL,
+	[ParPerId] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[partidasubcuenta]    Script Date: 2023-11-22 10:54:40 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[partidasubcuenta](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[parsubcueid] [int] NULL,
+	[parsubcueidpart] [int] NULL,
+	[Activo] [bit] NULL,
+	[SubCueIdEmpresa] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PeriodoContable]    Script Date: 2023-11-22 10:54:40 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PeriodoContable](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[tippagcueid] [varchar](20) NULL,
+	[fechaini] [datetime] NULL,
+	[fechafin] [datetime] NULL,
+	[fechapago] [datetime] NULL,
+	[fechacorte] [datetime] NULL,
+	[frecuencia] [int] NULL,
+	[mes] [int] NULL,
+	[Aniocontable] [int] NULL,
+	[estado] [varchar](1000) NULL,
+	[idperempresa] [int] NULL,
+	[activo] [bit] NULL,
+	[usuariocreacion] [varchar](100) NULL,
+	[fechacreacion] [datetime] NULL,
+	[usuariomodifica] [varchar](100) NULL,
+	[fechamodificacion] [datetime] NULL,
+	[perfiscalid] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[periodofiscal]    Script Date: 2023-11-22 10:54:40 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[periodofiscal](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[fechaini] [date] NULL,
+	[fechafin] [date] NULL,
+	[estado] [varchar](100) NULL,
+	[idempresa] [int] NULL,
+	[activo] [bit] NULL,
+	[usuariocreacion] [varchar](100) NULL,
+	[fechacreacion] [datetime] NULL,
+	[usuariomodifica] [varchar](100) NULL,
+	[fechamodificacion] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[periodoinforme]    Script Date: 2023-11-22 10:54:40 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[periodoinforme](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[idperiodo] [int] NULL,
+	[fechainforme] [date] NULL,
+	[activo] [bit] NULL,
+	[usuariocreacion] [varchar](100) NULL,
+	[fechacreacion] [datetime] NULL,
+	[usuariomodificacion] [varchar](100) NULL,
+	[fechamodifico] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PeriodoSaldoHis]    Script Date: 2023-11-22 10:54:40 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PeriodoSaldoHis](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[PerId] [int] NULL,
+	[perCueid] [int] NULL,
+	[valorcuenta] [decimal](10, 4) NULL,
+	[persalempresa] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[proveedores]    Script Date: 2023-11-22 10:54:40 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[proveedores](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[NombreCia] [varchar](1000) NULL,
+	[NombreContacto] [varchar](1000) NULL,
+	[email] [varchar](1000) NULL,
+	[Telefono] [varchar](1000) NULL,
+	[RTN] [varchar](1000) NULL,
+	[Activo] [bit] NULL,
+	[Direccion] [varchar](3000) NULL,
+	[ProIdEmpresa] [int] NULL,
+	[FechaCreacion] [date] NULL,
+	[Deuda] [decimal](10, 4) NULL,
+	[ProtipMon] [int] NULL,
+	[usuariocreacion] [varchar](100) NULL,
+	[fechamodificacion] [datetime] NULL,
+	[usuariomodifico] [varchar](100) NULL,
+	[subcueidpro] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[rol]    Script Date: 2023-11-22 10:54:40 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[rol](
+	[rolid] [bigint] IDENTITY(1,1) NOT NULL,
+	[descripcion] [varchar](200) NULL,
+	[activo] [bit] NULL,
+	[roldEmpresa] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[rolid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[rolesopciones]    Script Date: 2023-11-22 10:54:40 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[rolesopciones](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[idrol] [bigint] NOT NULL,
+	[IdOpcion] [int] NOT NULL,
+	[Activo] [bit] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[subcuenta]    Script Date: 2023-11-22 10:54:40 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[subcuenta](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[Cuentacontablesub] [varchar](100) NULL,
+	[Descripcion] [varchar](300) NULL,
+	[Activo] [bit] NULL,
+	[CuentaId] [int] NULL,
+	[SubCueIdEmpresa] [int] NULL,
+	[usuariocreacion] [varchar](100) NULL,
+	[fechacreacion] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TipoMoneda]    Script Date: 2023-11-22 10:54:40 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TipoMoneda](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Descripcion] [varchar](100) NULL,
+	[Simbolo] [varchar](10) NULL,
+	[PaisIsob] [varchar](10) NULL,
+	[PaisIsoc] [varchar](10) NULL,
+	[Moneda] [varchar](10) NULL,
+	[MonIdEmpresa] [int] NULL,
+	[Activo] [bit] NULL,
+	[usuariocreacion] [varchar](100) NULL,
+	[fechamodificacion] [datetime] NULL,
+	[usuariomodifico] [varchar](100) NULL,
+	[fechacreacion] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TipoPago]    Script Date: 2023-11-22 10:54:40 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TipoPago](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[tippagcueid] [int] NULL,
+	[activo] [bit] NULL,
+	[tippagoIdEmpresa] [int] NULL,
+	[descripcion] [varchar](1000) NULL,
+	[cuenta] [varchar](1000) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tipoTransacciones]    Script Date: 2023-11-22 10:54:40 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tipoTransacciones](
+	[id] [varchar](100) NOT NULL,
+	[descripcion] [varchar](1000) NULL,
+	[activo] [bit] NULL,
+	[ttraidempresa] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[transacciones]    Script Date: 2023-11-22 10:54:40 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[transacciones](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[TraParId] [int] NULL,
+	[TipoTransaccion] [varchar](100) NULL,
+	[TraIdEmpresa] [int] NULL,
+	[UsuarioCreacion] [varchar](100) NULL,
+	[FechaCreacion] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[usuario]    Script Date: 2023-11-22 10:54:40 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[usuario](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[primernombre] [varchar](20) NULL,
+	[segundonombre] [varchar](20) NULL,
+	[primerapellido] [varchar](29) NULL,
+	[segundoapellido] [varchar](29) NULL,
+	[estado] [varchar](20) NULL,
+	[fechaIngreso] [date] NULL,
+	[fechaRetiro] [date] NULL,
+	[dni] [varchar](20) NULL,
+	[usuario] [varchar](20) NULL,
+	[clave] [varchar](2000) NULL,
+	[preguntaSeguridad] [varchar](2000) NULL,
+	[RespuestaSeguridad] [varchar](2000) NULL,
+	[telefono] [varchar](20) NULL,
+	[sexo] [varchar](1) NULL,
+	[idrol] [bigint] NULL,
+	[intentos] [int] NULL,
+	[usuidempresa] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[usuarioroles]    Script Date: 2023-11-22 10:54:40 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[usuarioroles](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[UsuarioId] [bigint] NOT NULL,
+	[ROlidUsu] [bigint] NOT NULL,
+	[Activo] [bit] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[ClasificacionCuenta] ON 
+
+INSERT [dbo].[ClasificacionCuenta] ([Id], [Clase], [TipoCuenta], [Naturaleza], [Activo], [ClaIdempresa]) VALUES (1, N'1', N'Activos', N'Debito', 1, 3)
+INSERT [dbo].[ClasificacionCuenta] ([Id], [Clase], [TipoCuenta], [Naturaleza], [Activo], [ClaIdempresa]) VALUES (2, N'2', N'Pasivos', N'Credito', 1, 3)
+INSERT [dbo].[ClasificacionCuenta] ([Id], [Clase], [TipoCuenta], [Naturaleza], [Activo], [ClaIdempresa]) VALUES (3, N'5', N'Ingresos', N'Credito', 1, 3)
+INSERT [dbo].[ClasificacionCuenta] ([Id], [Clase], [TipoCuenta], [Naturaleza], [Activo], [ClaIdempresa]) VALUES (4, N'6', N'Gastos', N'Debito', 1, 3)
+INSERT [dbo].[ClasificacionCuenta] ([Id], [Clase], [TipoCuenta], [Naturaleza], [Activo], [ClaIdempresa]) VALUES (5, N'3', N'PATRIMONIO', N'Credito', 1, 3)
+SET IDENTITY_INSERT [dbo].[ClasificacionCuenta] OFF
+SET IDENTITY_INSERT [dbo].[Cliente] ON 
+
+INSERT [dbo].[Cliente] ([Id], [Nombre], [Apellido], [Direccion], [email], [Activo], [FechaIngreso], [Telefono], [CliIdEmpresa], [Abono], [CliTipMonid], [segundoNombre], [segundoApellido], [subcueidcli], [NombreCia], [RTN], [usuariocreacion], [fechamodificacion], [usuariomodifico], [fechacreacion]) VALUES (1, N'ritchies', N'funes', N'bo san jose', N'rfunes@gmail.com', 1, CAST(N'2023-10-11' AS Date), N' 99881122', 3, CAST(12000.0000 AS Decimal(10, 4)), 1, N'cristopher', N'garcia', NULL, NULL, NULL, NULL, NULL, NULL, NULL)
+INSERT [dbo].[Cliente] ([Id], [Nombre], [Apellido], [Direccion], [email], [Activo], [FechaIngreso], [Telefono], [CliIdEmpresa], [Abono], [CliTipMonid], [segundoNombre], [segundoApellido], [subcueidcli], [NombreCia], [RTN], [usuariocreacion], [fechamodificacion], [usuariomodifico], [fechacreacion]) VALUES (2, N'melvins', N'ramirez', N'floridas', N'rami@gmail.com', 1, CAST(N'2023-10-13' AS Date), N' 33445566', 3, CAST(19000.0000 AS Decimal(10, 4)), 1, N'joses', N'cruzs', NULL, NULL, NULL, NULL, NULL, NULL, NULL)
+INSERT [dbo].[Cliente] ([Id], [Nombre], [Apellido], [Direccion], [email], [Activo], [FechaIngreso], [Telefono], [CliIdEmpresa], [Abono], [CliTipMonid], [segundoNombre], [segundoApellido], [subcueidcli], [NombreCia], [RTN], [usuariocreacion], [fechamodificacion], [usuariomodifico], [fechacreacion]) VALUES (3, N'melvin', N'osorto', N'villanuevas', N'melv@gmail.com', 1, CAST(N'2023-09-28' AS Date), N'  44553333', 3, CAST(1500.0000 AS Decimal(10, 4)), 1, N'ostias', N'sanches', NULL, NULL, NULL, NULL, NULL, NULL, NULL)
+INSERT [dbo].[Cliente] ([Id], [Nombre], [Apellido], [Direccion], [email], [Activo], [FechaIngreso], [Telefono], [CliIdEmpresa], [Abono], [CliTipMonid], [segundoNombre], [segundoApellido], [subcueidcli], [NombreCia], [RTN], [usuariocreacion], [fechamodificacion], [usuariomodifico], [fechacreacion]) VALUES (4, N'sara', N'diaz', N'villanueva cortes', N'sardi@gmail.com', 1, CAST(N'2023-10-18' AS Date), N'12234', 3, CAST(14000.0000 AS Decimal(10, 4)), 1, N'rubi', N'dias', NULL, NULL, NULL, NULL, NULL, NULL, NULL)
+INSERT [dbo].[Cliente] ([Id], [Nombre], [Apellido], [Direccion], [email], [Activo], [FechaIngreso], [Telefono], [CliIdEmpresa], [Abono], [CliTipMonid], [segundoNombre], [segundoApellido], [subcueidcli], [NombreCia], [RTN], [usuariocreacion], [fechamodificacion], [usuariomodifico], [fechacreacion]) VALUES (5, N'maria', N'garcia', N'villanueva cotes', N'jose@pollorey.com', 1, CAST(N'2023-10-22' AS Date), N'98787878', 3, CAST(15000.0000 AS Decimal(10, 4)), 1, N'jose', N'umanzor', 7, N'pollo rey', N'05011980003101', N'vacio', NULL, NULL, CAST(N'2023-10-22T15:23:19.137' AS DateTime))
+INSERT [dbo].[Cliente] ([Id], [Nombre], [Apellido], [Direccion], [email], [Activo], [FechaIngreso], [Telefono], [CliIdEmpresa], [Abono], [CliTipMonid], [segundoNombre], [segundoApellido], [subcueidcli], [NombreCia], [RTN], [usuariocreacion], [fechamodificacion], [usuariomodifico], [fechacreacion]) VALUES (6, N'karla', N'flores', N'villanueva cortes', N'karflo@pronorsa.com', 1, CAST(N'2023-10-22' AS Date), N' 99445566', 3, CAST(14500.0000 AS Decimal(10, 4)), 1, N'jose', N'gomez', 8, N'pronorsas', N'05061991002306', N'vacio', CAST(N'2023-10-22T16:17:08.907' AS DateTime), N'vacio', CAST(N'2023-10-22T15:28:34.033' AS DateTime))
+INSERT [dbo].[Cliente] ([Id], [Nombre], [Apellido], [Direccion], [email], [Activo], [FechaIngreso], [Telefono], [CliIdEmpresa], [Abono], [CliTipMonid], [segundoNombre], [segundoApellido], [subcueidcli], [NombreCia], [RTN], [usuariocreacion], [fechamodificacion], [usuariomodifico], [fechacreacion]) VALUES (7, N'mayra', N'monge', N'san pedo sula', N'mayra@cadeca.com', 1, CAST(N'2023-10-22' AS Date), N'26703445', 3, CAST(0.0000 AS Decimal(10, 4)), 1, N'anarda', N'cartagena', 9, N'cadeca', N'0504199000303', N'vacio', NULL, NULL, CAST(N'2023-10-22T16:21:10.757' AS DateTime))
+INSERT [dbo].[Cliente] ([Id], [Nombre], [Apellido], [Direccion], [email], [Activo], [FechaIngreso], [Telefono], [CliIdEmpresa], [Abono], [CliTipMonid], [segundoNombre], [segundoApellido], [subcueidcli], [NombreCia], [RTN], [usuariocreacion], [fechamodificacion], [usuariomodifico], [fechacreacion]) VALUES (8, N'cesia', N'canales', N'villanuev cotes', N'cesmaria@kapa.com', 1, CAST(N'2023-10-28' AS Date), N'66775544', 3, CAST(21800.0000 AS Decimal(10, 4)), 1, N'maria', N'dumbi', 13, N'KAPA', N'04051989003214', N'vacio', NULL, NULL, CAST(N'2023-10-28T14:38:58.450' AS DateTime))
+INSERT [dbo].[Cliente] ([Id], [Nombre], [Apellido], [Direccion], [email], [Activo], [FechaIngreso], [Telefono], [CliIdEmpresa], [Abono], [CliTipMonid], [segundoNombre], [segundoApellido], [subcueidcli], [NombreCia], [RTN], [usuariocreacion], [fechamodificacion], [usuariomodifico], [fechacreacion]) VALUES (9, N'daniel', N'funes', N'bo san jose san manuel', N'oscar@gmail.com', 1, CAST(N'2023-09-12' AS Date), N'44556677', 3, CAST(10000.0000 AS Decimal(10, 4)), 1, N'oscar', N'garcia', 15, N'paradise', N'0501988003211', N'ysanchez', NULL, NULL, CAST(N'2023-11-16T12:03:02.340' AS DateTime))
+SET IDENTITY_INSERT [dbo].[Cliente] OFF
+SET IDENTITY_INSERT [dbo].[Correlativo] ON 
+
+INSERT [dbo].[Correlativo] ([Id], [Descripcion], [Asiento], [Activo], [CorrIdEmp]) VALUES (4, N'Asiento', 29, 1, 3)
+SET IDENTITY_INSERT [dbo].[Correlativo] OFF
+SET IDENTITY_INSERT [dbo].[Cuenta] ON 
+
+INSERT [dbo].[Cuenta] ([Id], [CuentaContable], [Descripcion], [ClaseCuentaId], [CuentaTipo], [MonedaId], [CueIdEmpresa], [Activo], [cargacuenta]) VALUES (1, N'1111', N'CAJA', 1, N'DETALLE', 1, 3, 1, NULL)
+INSERT [dbo].[Cuenta] ([Id], [CuentaContable], [Descripcion], [ClaseCuentaId], [CuentaTipo], [MonedaId], [CueIdEmpresa], [Activo], [cargacuenta]) VALUES (2, N'1112', N'BANCOS', 1, N'DETALLE', 1, 3, 1, NULL)
+INSERT [dbo].[Cuenta] ([Id], [CuentaContable], [Descripcion], [ClaseCuentaId], [CuentaTipo], [MonedaId], [CueIdEmpresa], [Activo], [cargacuenta]) VALUES (7, N'211', N'CUENTAS POR PAGAR', 2, N'DETALLE', 1, 3, 1, NULL)
+INSERT [dbo].[Cuenta] ([Id], [CuentaContable], [Descripcion], [ClaseCuentaId], [CuentaTipo], [MonedaId], [CueIdEmpresa], [Activo], [cargacuenta]) VALUES (8, N'111', N'EFECTIVO', 1, N'DETALLE', 1, 3, 1, CAST(0.0000 AS Decimal(10, 4)))
+INSERT [dbo].[Cuenta] ([Id], [CuentaContable], [Descripcion], [ClaseCuentaId], [CuentaTipo], [MonedaId], [CueIdEmpresa], [Activo], [cargacuenta]) VALUES (10, N'11316', N'Cuentas por Cobrar', 1, N'DETALLE', 1, 3, 1, CAST(0.0000 AS Decimal(10, 4)))
+INSERT [dbo].[Cuenta] ([Id], [CuentaContable], [Descripcion], [ClaseCuentaId], [CuentaTipo], [MonedaId], [CueIdEmpresa], [Activo], [cargacuenta]) VALUES (11, N'1113', N'Bancos Dolar', 1, N'DETALLE', 2, 3, 1, CAST(0.0000 AS Decimal(10, 4)))
+INSERT [dbo].[Cuenta] ([Id], [CuentaContable], [Descripcion], [ClaseCuentaId], [CuentaTipo], [MonedaId], [CueIdEmpresa], [Activo], [cargacuenta]) VALUES (12, N'1241', N'equipos de oficina', 1, N'DETALLE', 1, 3, 1, CAST(0.0000 AS Decimal(10, 4)))
+INSERT [dbo].[Cuenta] ([Id], [CuentaContable], [Descripcion], [ClaseCuentaId], [CuentaTipo], [MonedaId], [CueIdEmpresa], [Activo], [cargacuenta]) VALUES (13, N'11317', N'Cuentas por Cobrar USD', 1, N'DETALLE', 2, 3, 1, CAST(0.0000 AS Decimal(10, 4)))
+INSERT [dbo].[Cuenta] ([Id], [CuentaContable], [Descripcion], [ClaseCuentaId], [CuentaTipo], [MonedaId], [CueIdEmpresa], [Activo], [cargacuenta]) VALUES (14, N'212', N'CUENTAS POR PAGAR USD', 2, N'DETALLE', 2, 3, 1, CAST(0.0000 AS Decimal(10, 4)))
+INSERT [dbo].[Cuenta] ([Id], [CuentaContable], [Descripcion], [ClaseCuentaId], [CuentaTipo], [MonedaId], [CueIdEmpresa], [Activo], [cargacuenta]) VALUES (15, N'531', N'Ingresos x ventas', 3, N'DETALLE', 1, 3, 1, CAST(0.0000 AS Decimal(10, 4)))
+INSERT [dbo].[Cuenta] ([Id], [CuentaContable], [Descripcion], [ClaseCuentaId], [CuentaTipo], [MonedaId], [CueIdEmpresa], [Activo], [cargacuenta]) VALUES (16, N'53', N'Ingresos de operacion', 3, N'DETALLE', 1, 3, 1, CAST(0.0000 AS Decimal(10, 4)))
+INSERT [dbo].[Cuenta] ([Id], [CuentaContable], [Descripcion], [ClaseCuentaId], [CuentaTipo], [MonedaId], [CueIdEmpresa], [Activo], [cargacuenta]) VALUES (17, N'61412', N'Costos de ventas', 4, N'DETALLE', 1, 3, 1, CAST(0.0000 AS Decimal(10, 4)))
+INSERT [dbo].[Cuenta] ([Id], [CuentaContable], [Descripcion], [ClaseCuentaId], [CuentaTipo], [MonedaId], [CueIdEmpresa], [Activo], [cargacuenta]) VALUES (18, N'6123', N'antenimiento y Reparación de Bienes', 4, N'DETALLE', 1, 3, 1, CAST(0.0000 AS Decimal(10, 4)))
+INSERT [dbo].[Cuenta] ([Id], [CuentaContable], [Descripcion], [ClaseCuentaId], [CuentaTipo], [MonedaId], [CueIdEmpresa], [Activo], [cargacuenta]) VALUES (19, N'61111', N'Sueldos y Salarios', 4, N'DETALLE', 1, 3, 1, CAST(0.0000 AS Decimal(10, 4)))
+INSERT [dbo].[Cuenta] ([Id], [CuentaContable], [Descripcion], [ClaseCuentaId], [CuentaTipo], [MonedaId], [CueIdEmpresa], [Activo], [cargacuenta]) VALUES (20, N'6122', N'Alquileres y derechos', 4, N'DETALLE', 1, 3, 1, CAST(0.0000 AS Decimal(10, 4)))
+INSERT [dbo].[Cuenta] ([Id], [CuentaContable], [Descripcion], [ClaseCuentaId], [CuentaTipo], [MonedaId], [CueIdEmpresa], [Activo], [cargacuenta]) VALUES (21, N'613', N'Materiales y suministros', 4, N'DETALLE', 1, 3, 1, CAST(0.0000 AS Decimal(10, 4)))
+INSERT [dbo].[Cuenta] ([Id], [CuentaContable], [Descripcion], [ClaseCuentaId], [CuentaTipo], [MonedaId], [CueIdEmpresa], [Activo], [cargacuenta]) VALUES (22, N'11512', N'Materiales y suministros', 1, N'DETALLE', 1, 3, 1, CAST(0.0000 AS Decimal(10, 4)))
+INSERT [dbo].[Cuenta] ([Id], [CuentaContable], [Descripcion], [ClaseCuentaId], [CuentaTipo], [MonedaId], [CueIdEmpresa], [Activo], [cargacuenta]) VALUES (23, N'311', N'Capital', 5, N'DETALLE', 1, 3, 1, CAST(0.0000 AS Decimal(10, 4)))
+INSERT [dbo].[Cuenta] ([Id], [CuentaContable], [Descripcion], [ClaseCuentaId], [CuentaTipo], [MonedaId], [CueIdEmpresa], [Activo], [cargacuenta]) VALUES (24, N'21141', N'ISR por Pagar', 2, N'DETALLE', 1, 3, 1, CAST(0.0000 AS Decimal(10, 4)))
+INSERT [dbo].[Cuenta] ([Id], [CuentaContable], [Descripcion], [ClaseCuentaId], [CuentaTipo], [MonedaId], [CueIdEmpresa], [Activo], [cargacuenta]) VALUES (25, N'312', N'Reservas', 5, N'DETALLE', 1, 3, 1, CAST(0.0000 AS Decimal(10, 4)))
+SET IDENTITY_INSERT [dbo].[Cuenta] OFF
+SET IDENTITY_INSERT [dbo].[empresa] ON 
+
+INSERT [dbo].[empresa] ([Id], [Nombre], [Razon], [Activo]) VALUES (1, N'ORDENACUENTA', N'ORDENACUENTA SA DE CV', 1)
+INSERT [dbo].[empresa] ([Id], [Nombre], [Razon], [Activo]) VALUES (2, N'confecciones', N'confecciones SA DE CV', 1)
+INSERT [dbo].[empresa] ([Id], [Nombre], [Razon], [Activo]) VALUES (3, N'Parador', N'Parador SA DE CV', 1)
+SET IDENTITY_INSERT [dbo].[empresa] OFF
+SET IDENTITY_INSERT [dbo].[HistoricoMoneda] ON 
+
+INSERT [dbo].[HistoricoMoneda] ([Id], [HistMon], [Fecha], [Valor], [Activo], [HistMonEmpresa], [usuariocreacion], [fechamodificacion], [usuariomodifico], [fechacreacion]) VALUES (1, 2, CAST(N'2023-10-21' AS Date), CAST(24.6665 AS Decimal(10, 4)), 1, 3, N'rfune3', CAST(N'2023-10-21T16:25:57.487' AS DateTime), N'vacio', NULL)
+INSERT [dbo].[HistoricoMoneda] ([Id], [HistMon], [Fecha], [Valor], [Activo], [HistMonEmpresa], [usuariocreacion], [fechamodificacion], [usuariomodifico], [fechacreacion]) VALUES (2, 2, CAST(N'2023-10-20' AS Date), CAST(24.6665 AS Decimal(10, 4)), 1, 3, N'rfune3', NULL, NULL, NULL)
+INSERT [dbo].[HistoricoMoneda] ([Id], [HistMon], [Fecha], [Valor], [Activo], [HistMonEmpresa], [usuariocreacion], [fechamodificacion], [usuariomodifico], [fechacreacion]) VALUES (3, 2, CAST(N'2023-10-16' AS Date), CAST(24.0000 AS Decimal(10, 4)), 1, 3, N'vacio', NULL, NULL, CAST(N'2023-10-21T17:09:34.993' AS DateTime))
+INSERT [dbo].[HistoricoMoneda] ([Id], [HistMon], [Fecha], [Valor], [Activo], [HistMonEmpresa], [usuariocreacion], [fechamodificacion], [usuariomodifico], [fechacreacion]) VALUES (4, 2, CAST(N'2023-10-13' AS Date), CAST(24.0000 AS Decimal(10, 4)), 1, 3, N'vacio', NULL, NULL, CAST(N'2023-10-21T17:10:27.817' AS DateTime))
+INSERT [dbo].[HistoricoMoneda] ([Id], [HistMon], [Fecha], [Valor], [Activo], [HistMonEmpresa], [usuariocreacion], [fechamodificacion], [usuariomodifico], [fechacreacion]) VALUES (5, 2, CAST(N'2023-10-02' AS Date), CAST(23.0000 AS Decimal(10, 4)), 1, 3, N'ysanchez', NULL, NULL, CAST(N'2023-11-16T11:09:38.670' AS DateTime))
+SET IDENTITY_INSERT [dbo].[HistoricoMoneda] OFF
+SET IDENTITY_INSERT [dbo].[Libro] ON 
+
+INSERT [dbo].[Libro] ([Id], [Descripcion], [Activo], [libidemp]) VALUES (1, N'diario', 1, 3)
+INSERT [dbo].[Libro] ([Id], [Descripcion], [Activo], [libidemp]) VALUES (2, N'Contable', 1, 3)
+SET IDENTITY_INSERT [dbo].[Libro] OFF
+SET IDENTITY_INSERT [dbo].[Opciones] ON 
+
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (1, N'Inicio', N'Padre', N'1455739708_Kitchen_Bold_Line_Color_Mix-04_icon-icons.com_53405.png', N'Cuentasfrm', 1, 0)
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (2, N'Contabilidad', N'Padre', N'dollar-coin-money_icon-icons.com_56177.png', N'Partidafrm', 1, 0)
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (3, N'Mantenimientos', N'Padre', N'Maintenance_36750.png', N'MenuContabilidadcs', 1, 0)
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (4, N'Clientes', N'Padre', N'customer_person_people_man_you_1625.png', N'MenuCliente', 1, 0)
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (5, N'Proveedores', N'Padre', N'ic-vendor_97612.png', N'MenuProveedor', 1, 0)
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (6, N'Seguridad', N'Padre', N'40_104848.png', N'MenuSeguridad', 1, 0)
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (7, N'Reportes', N'Padre', N'business_table_order_report_history_2332.png', N'MenusReportes', 1, 0)
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (8, N'Mov DIario', N'Reportes', N'records_notes_journal_edited_9479.png', N'movdiariorpt', 1, 0)
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (9, N'Mov Cuentas', N'Reportes', N'ledger_icon_246675.png', N'MovCuentasfrm', 1, 0)
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (10, N'Est Cuenta prov', N'Reportes', N'payment_financial_tax_report_payable_budget_dollar_accounting_account_icon_258663.png', N'MovCuentasfrm', 1, 0)
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (11, N'Balance General', N'Reportes', N'cash_icon-icons.com_51090.png', N'balancegenfrm', 1, 0)
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (12, N'Estado resultado', N'Reportes', N'accounting_calculator_banking_currency_dollar_bank_business_money_making_icon_258655.png', N'estadocuentasfrm', 1, 0)
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (13, N'Roles', N'Seguridad', N'community_users_12977.png', N'RolAdd', 1, 0)
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (14, N'Usuarios', N'Seguridad', N'systemusers_104569.png', N'UsuarioShow', 1, 0)
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (15, N'opciones', N'Seguridad', N'folder_options_15429.png', N'opcionesShow', 1, 0)
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (16, N'rol opciones', N'Seguridad', N'settings_options_preferences_gears_icon_124617.png', N'rolopcionesShow', 1, 0)
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (17, N'ususario opciones', N'Seguridad', N'rotation_102346.png', N'usuarioopcionesShow', 1, 0)
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (18, N'Proveedores', N'Proveedor', N'isp_29172.png', N'Proveedoresshow', 1, 0)
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (19, N'cuentas x pagar', N'Proveedor', N'cash_icon-icons.com_51090.png', N'PagoProveedoresfrm', 1, 0)
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (20, N'cuentas x cobrar', N'Clientes', N'pay_cash_bill_money_buy_icon_143287.png', N'PagaClientefrm', 1, 0)
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (21, N'Clientes', N'Clientes', N'business_application_addmale_useradd_insert_add_user_client_2312.png', N'ClienteShow', 1, 0)
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (22, N'Historico Moneda', N'Mantenimientos', N'1489436625-chartmoneydollarcurrency_81885.png', N'HistoricoMonedashowfrm', 1, 0)
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (23, N'Tipo moneda', N'Mantenimientos', N'dollar-coin-money_icon-icons.com_56177.png', N'TipoMonedashowfrm', 1, 0)
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (24, N'Cuentas', N'Contabilidad', N'accounting_book_education_icon_220464.png', N'Cuentasfrm', 1, 0)
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (25, N'Periodos', N'Contabilidad', N'calendar_office_day_1474.png', N'periodoshowfrmcs', 1, 0)
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (26, N'Crear Partida', N'Contabilidad', N'notebook_5_icon-icons.com_54605.png', N'Partidafrm', 1, 0)
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (27, N'Saldos historico', N'Contabilidad', N'lightbrown_books_folders_12307.png', N'periodosaldohisshow', 1, 0)
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (28, N'Cierres', N'Contabilidad', N'organizer_calendar_clock_pencil_10047.png', N'CierrePeriodo', 1, 0)
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (29, N'Periodos Fiscales', N'Contabilidad', N'note-task-comment-message-edit-write_108613 (1).png', N'Periodofiscalshow', 1, 0)
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (30, N'Transacciones', N'Mantenimientos', N'catalogue_promotion_document_file_letter_media_information_business_newsletter_icon_212633.png', N'TipoMonedashowfrm', 1, 0)
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (32, N'opc usuario', N'Seguridad', N'rotation_102346.png', N'opcusuariofrm', 1, 0)
+INSERT [dbo].[Opciones] ([Id], [Nombre], [Nivel], [icono], [rutafrm], [Activo], [OpcionPadre]) VALUES (33, N'usuario rol', N'Seguridad', N'rotation_usurol.png', N'usuariorolesshow', 1, 0)
+SET IDENTITY_INSERT [dbo].[Opciones] OFF
+SET IDENTITY_INSERT [dbo].[Partida] ON 
+
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (1, 1, CAST(N'2023-10-11' AS Date), 2, 0, 1500, 0, CAST(N'2023-10-11T14:59:32.140' AS DateTime), 1, N'MOV DE CAJA', 3, 1, NULL)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (2, 1, CAST(N'2023-10-11' AS Date), 1, 0, 2000, 0, CAST(N'2023-10-11T14:59:32.170' AS DateTime), 1, N'MOV DE CAJA', 3, 1, NULL)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (3, 1, CAST(N'2023-10-11' AS Date), 7, 0, 0, 3500, CAST(N'2023-10-11T14:59:32.187' AS DateTime), 1, N'MOV DE CAJA', 3, 1, NULL)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (4, 2, CAST(N'2023-10-04' AS Date), 1, 0, 1200, 0, CAST(N'2023-10-11T20:39:45.793' AS DateTime), 1, N'aser', 3, 1, NULL)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (5, 2, CAST(N'2023-10-04' AS Date), 7, 0, 0, 1200, CAST(N'2023-10-11T20:39:46.963' AS DateTime), 1, N'aser', 3, 1, NULL)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (6, 3, CAST(N'2023-10-03' AS Date), 1, 0, 1200, 0, CAST(N'2023-10-11T20:50:53.267' AS DateTime), 0, N'aser', 3, 1, NULL)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (7, 3, CAST(N'2023-10-03' AS Date), 8, 0, 0, 1200, CAST(N'2023-10-11T20:50:53.487' AS DateTime), 0, N'aser', 3, 1, NULL)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (8, 4, CAST(N'2023-10-11' AS Date), 2, 0, 1700, 0, CAST(N'2023-10-12T13:28:06.593' AS DateTime), 0, N'pago efectivo', 3, 1, NULL)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (9, 4, CAST(N'2023-10-11' AS Date), 8, 0, 0, 1700, CAST(N'2023-10-12T13:28:06.610' AS DateTime), 0, N'pago efectivo', 3, 1, NULL)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (10, 5, CAST(N'2023-10-17' AS Date), 2, 0, 1200, 0, CAST(N'2023-10-17T21:12:17.270' AS DateTime), 1, N'fact 1', 3, 1, NULL)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (11, 5, CAST(N'2023-10-17' AS Date), 7, 0, 0, 1200, CAST(N'2023-10-17T21:12:17.660' AS DateTime), 1, N'fact 1', 3, 1, NULL)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (12, 6, CAST(N'2023-10-23' AS Date), 2, 0, 1600, 0, CAST(N'2023-10-24T19:35:36.353' AS DateTime), 0, N'pago cuota 1', 3, 1, NULL)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (13, 6, CAST(N'2023-10-23' AS Date), 10, 0, 0, 1600, CAST(N'2023-10-24T19:35:36.900' AS DateTime), 0, N'pago cuota 1', 3, 1, NULL)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (14, 7, CAST(N'2023-10-24' AS Date), 8, 0, 1600, 0, CAST(N'2023-10-24T19:54:24.490' AS DateTime), 0, N'pago cuota 2 ', 3, 1, NULL)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (15, 7, CAST(N'2023-10-24' AS Date), 10, 0, 0, 1600, CAST(N'2023-10-24T19:54:25.437' AS DateTime), 0, N'pago cuota 2 ', 3, 1, NULL)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (16, 8, CAST(N'2023-10-25' AS Date), 7, 0, 1500, 0, CAST(N'2023-10-25T19:13:14.387' AS DateTime), 0, N'pago soda A', 3, 1, NULL)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (17, 8, CAST(N'2023-10-25' AS Date), 2, 0, 0, 1500, CAST(N'2023-10-25T19:13:14.637' AS DateTime), 0, N'pago soda A', 3, 1, NULL)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (18, 9, CAST(N'2023-10-25' AS Date), 7, 0, 2000, 0, CAST(N'2023-10-25T19:34:55.487' AS DateTime), 0, N'pepsi pago producto A', 3, 1, NULL)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (19, 9, CAST(N'2023-10-25' AS Date), 2, 0, 0, 2000, CAST(N'2023-10-25T19:34:55.720' AS DateTime), 0, N'pepsi pago producto A', 3, 1, NULL)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (23, 10, CAST(N'2023-10-27' AS Date), 8, 0, 1200, 0, CAST(N'2023-10-27T21:12:09.303' AS DateTime), 0, N'venta de camisas', 3, 1, 1)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (24, 10, CAST(N'2023-10-27' AS Date), 10, 0, 0, 1200, CAST(N'2023-10-27T21:12:12.627' AS DateTime), 0, N'venta de camisas', 3, 1, 1)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (25, 11, CAST(N'2023-10-27' AS Date), 7, 0, 2000, 0, CAST(N'2023-10-27T21:17:55.970' AS DateTime), 0, N'pago cuota A', 3, 1, 1)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (26, 11, CAST(N'2023-10-27' AS Date), 2, 0, 0, 2000, CAST(N'2023-10-27T21:17:56.157' AS DateTime), 0, N'pago cuota A', 3, 1, 1)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (27, 12, CAST(N'2023-10-27' AS Date), 2, 0, 1500, 0, CAST(N'2023-10-27T21:23:15.027' AS DateTime), 0, N'cuota paga b', 3, 1, 1)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (28, 12, CAST(N'2023-10-27' AS Date), 10, 0, 0, 1500, CAST(N'2023-10-27T21:23:15.213' AS DateTime), 0, N'cuota paga b', 3, 1, 1)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (29, 13, CAST(N'2023-10-13' AS Date), 11, 0, 2400, 0, CAST(N'2023-10-28T13:51:14.010' AS DateTime), 0, N'venta de jarron', 3, 1, 4)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (30, 13, CAST(N'2023-10-13' AS Date), 12, 0, 2400, 0, CAST(N'2023-10-28T13:51:20.987' AS DateTime), 0, N'venta de jarron', 3, 1, 4)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (31, 14, CAST(N'2023-10-13' AS Date), 2, 0, 1200, 0, CAST(N'2023-10-28T14:40:27.040' AS DateTime), 0, N'paga asistin', 3, 1, 4)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (32, 14, CAST(N'2023-10-13' AS Date), 13, 0, 0, 1200, CAST(N'2023-10-28T14:40:27.227' AS DateTime), 0, N'paga asistin', 3, 1, 4)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (33, 15, CAST(N'2023-10-13' AS Date), 14, 0, 1440, 0, CAST(N'2023-10-28T15:07:18.547' AS DateTime), 0, N'Pago churros', 3, 1, 4)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (34, 15, CAST(N'2023-10-13' AS Date), 2, 0, 0, 1440, CAST(N'2023-10-28T15:07:18.720' AS DateTime), 0, N'Pago churros', 3, 1, 4)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (35, 16, CAST(N'2023-10-13' AS Date), 8, 0, 2000, 0, CAST(N'2023-11-11T14:05:00.700' AS DateTime), 1, N'venta de camisas', 3, 1, 4)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (36, 16, CAST(N'2023-10-13' AS Date), 15, 0, 0, 2000, CAST(N'2023-11-11T14:05:00.913' AS DateTime), 1, N'venta de camisas', 3, 1, 4)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (37, 17, CAST(N'2023-10-13' AS Date), 8, 0, 1500, 0, CAST(N'2023-11-11T14:10:06.310' AS DateTime), 1, N'venta de pantalones', 3, 1, 4)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (38, 17, CAST(N'2023-10-13' AS Date), 15, 0, 0, 1500, CAST(N'2023-11-11T14:10:06.513' AS DateTime), 1, N'venta de pantalones', 3, 1, 4)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (39, 18, CAST(N'2023-10-12' AS Date), 8, 0, 1000, 0, CAST(N'2023-11-11T14:15:51.660' AS DateTime), 1, N'venta de relo', 3, 1, 4)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (40, 18, CAST(N'2023-10-12' AS Date), 15, 0, 0, 1000, CAST(N'2023-11-11T14:15:51.867' AS DateTime), 1, N'venta de relo', 3, 1, 4)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (41, 19, CAST(N'2023-10-12' AS Date), 8, 0, 900, 0, CAST(N'2023-11-11T14:21:26.330' AS DateTime), 1, N'venta de boxers', 3, 1, 4)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (42, 19, CAST(N'2023-10-12' AS Date), 15, 0, 0, 900, CAST(N'2023-11-11T14:21:26.500' AS DateTime), 1, N'venta de boxers', 3, 1, 4)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (43, 20, CAST(N'2023-10-12' AS Date), 8, 0, 150, 0, CAST(N'2023-11-11T14:22:03.280' AS DateTime), 1, N'venta de calcetas', 3, 1, 4)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (44, 20, CAST(N'2023-10-12' AS Date), 15, 0, 0, 150, CAST(N'2023-11-11T14:22:03.457' AS DateTime), 1, N'venta de calcetas', 3, 1, 4)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (45, 21, CAST(N'2023-10-12' AS Date), 22, 0, 500, 0, CAST(N'2023-11-11T14:39:05.020' AS DateTime), 1, N'suministros de oficina', 3, 1, 4)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (46, 21, CAST(N'2023-10-12' AS Date), 8, 0, 0, 500, CAST(N'2023-11-11T14:39:05.213' AS DateTime), 1, N'suministros de oficina', 3, 1, 4)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (47, 22, CAST(N'2023-10-13' AS Date), 21, 0, 100, 0, CAST(N'2023-11-11T14:40:19.160' AS DateTime), 1, N'gastos por suministros', 3, 1, 4)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (48, 22, CAST(N'2023-10-13' AS Date), 22, 0, 0, 100, CAST(N'2023-11-11T14:40:19.357' AS DateTime), 1, N'gastos por suministros', 3, 1, 4)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (49, 23, CAST(N'2023-10-12' AS Date), 19, 0, 900, 0, CAST(N'2023-11-11T14:42:19.017' AS DateTime), 1, N'pago de salario 20231012', 3, 1, 4)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (50, 23, CAST(N'2023-10-12' AS Date), 8, 0, 0, 900, CAST(N'2023-11-11T14:42:19.220' AS DateTime), 1, N'pago de salario 20231012', 3, 1, 4)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (51, 24, CAST(N'2023-10-12' AS Date), 18, 0, 500, 0, CAST(N'2023-11-11T14:45:59.000' AS DateTime), 1, N'mateninimieto de aire acondicionado ventas A', 3, 1, 4)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (52, 24, CAST(N'2023-10-12' AS Date), 8, 0, 0, 500, CAST(N'2023-11-11T14:45:59.183' AS DateTime), 1, N'mateninimieto de aire acondicionado ventas A', 3, 1, 4)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (53, 25, CAST(N'2023-10-13' AS Date), 17, 0, 800, 0, CAST(N'2023-11-11T15:01:42.007' AS DateTime), 1, N'compra de camisas', 3, 1, 4)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (54, 25, CAST(N'2023-10-13' AS Date), 8, 0, 0, 800, CAST(N'2023-11-11T15:01:42.180' AS DateTime), 1, N'compra de camisas', 3, 1, 4)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (55, 26, CAST(N'2023-10-02' AS Date), 8, 0, 15000, 0, CAST(N'2023-11-14T15:39:55.510' AS DateTime), 1, N'inversion del propietario', 3, 1, 4)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (56, 26, CAST(N'2023-10-02' AS Date), 23, 0, 0, 15000, CAST(N'2023-11-14T15:39:55.560' AS DateTime), 1, N'inversion del propietario', 3, 1, 4)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (57, 27, CAST(N'2023-10-16' AS Date), 8, 0, 1800, 0, CAST(N'2023-11-16T10:39:38.847' AS DateTime), 1, N'venta de reloj', 3, 1, 1)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (58, 27, CAST(N'2023-10-16' AS Date), 15, 0, 0, 1800, CAST(N'2023-11-16T10:39:39.173' AS DateTime), 1, N'venta de reloj', 3, 1, 1)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (59, 28, CAST(N'2023-10-16' AS Date), 13, 0, 12000, 0, CAST(N'2023-11-16T10:46:44.517' AS DateTime), 1, N'venta de laptop', 3, 1, 1)
+INSERT [dbo].[Partida] ([Id], [Asiento], [Fecha], [CuentaPar], [Parcial], [Debe], [Haber], [FechaCreacion], [Activo], [Referencia], [ParIdEmpresa], [ParIdLibro], [ParPerId]) VALUES (60, 28, CAST(N'2023-10-16' AS Date), 15, 0, 0, 12000, CAST(N'2023-11-16T10:46:44.520' AS DateTime), 1, N'venta de laptop', 3, 1, 1)
+SET IDENTITY_INSERT [dbo].[Partida] OFF
+SET IDENTITY_INSERT [dbo].[partidasubcuenta] ON 
+
+INSERT [dbo].[partidasubcuenta] ([id], [parsubcueid], [parsubcueidpart], [Activo], [SubCueIdEmpresa]) VALUES (1, 9, 12, 0, 3)
+INSERT [dbo].[partidasubcuenta] ([id], [parsubcueid], [parsubcueidpart], [Activo], [SubCueIdEmpresa]) VALUES (2, 9, 13, 0, 3)
+INSERT [dbo].[partidasubcuenta] ([id], [parsubcueid], [parsubcueidpart], [Activo], [SubCueIdEmpresa]) VALUES (3, 9, 15, 1, 3)
+INSERT [dbo].[partidasubcuenta] ([id], [parsubcueid], [parsubcueidpart], [Activo], [SubCueIdEmpresa]) VALUES (4, 10, 16, 0, 3)
+INSERT [dbo].[partidasubcuenta] ([id], [parsubcueid], [parsubcueidpart], [Activo], [SubCueIdEmpresa]) VALUES (5, 10, 18, 1, 3)
+INSERT [dbo].[partidasubcuenta] ([id], [parsubcueid], [parsubcueidpart], [Activo], [SubCueIdEmpresa]) VALUES (6, 10, 25, 1, 3)
+INSERT [dbo].[partidasubcuenta] ([id], [parsubcueid], [parsubcueidpart], [Activo], [SubCueIdEmpresa]) VALUES (7, 8, 28, 1, 3)
+INSERT [dbo].[partidasubcuenta] ([id], [parsubcueid], [parsubcueidpart], [Activo], [SubCueIdEmpresa]) VALUES (8, 13, 32, 1, 3)
+INSERT [dbo].[partidasubcuenta] ([id], [parsubcueid], [parsubcueidpart], [Activo], [SubCueIdEmpresa]) VALUES (9, 14, 33, 1, 3)
+SET IDENTITY_INSERT [dbo].[partidasubcuenta] OFF
+SET IDENTITY_INSERT [dbo].[PeriodoContable] ON 
+
+INSERT [dbo].[PeriodoContable] ([id], [tippagcueid], [fechaini], [fechafin], [fechapago], [fechacorte], [frecuencia], [mes], [Aniocontable], [estado], [idperempresa], [activo], [usuariocreacion], [fechacreacion], [usuariomodifica], [fechamodificacion], [perfiscalid]) VALUES (1, N'2023210', CAST(N'2023-10-16T00:00:00.000' AS DateTime), CAST(N'2023-10-30T00:00:00.000' AS DateTime), CAST(N'2023-10-30T00:00:00.000' AS DateTime), CAST(N'2023-10-25T00:00:00.000' AS DateTime), 2, 10, 2023, N'Generado', 3, 1, N'', CAST(N'2023-10-25T20:54:31.160' AS DateTime), N'vacio', CAST(N'2023-10-25T20:57:26.810' AS DateTime), NULL)
+INSERT [dbo].[PeriodoContable] ([id], [tippagcueid], [fechaini], [fechafin], [fechapago], [fechacorte], [frecuencia], [mes], [Aniocontable], [estado], [idperempresa], [activo], [usuariocreacion], [fechacreacion], [usuariomodifica], [fechamodificacion], [perfiscalid]) VALUES (4, N'202391', CAST(N'2023-09-01T00:00:00.000' AS DateTime), CAST(N'2023-10-15T00:00:00.000' AS DateTime), CAST(N'2023-09-15T00:00:00.000' AS DateTime), CAST(N'2023-09-10T00:00:00.000' AS DateTime), 1, 9, 2023, N'Generado', 3, 1, N'vacio', CAST(N'2023-10-26T21:03:42.910' AS DateTime), NULL, NULL, NULL)
+INSERT [dbo].[PeriodoContable] ([id], [tippagcueid], [fechaini], [fechafin], [fechapago], [fechacorte], [frecuencia], [mes], [Aniocontable], [estado], [idperempresa], [activo], [usuariocreacion], [fechacreacion], [usuariomodifica], [fechamodificacion], [perfiscalid]) VALUES (5, N'202391', CAST(N'2023-09-16T00:00:00.000' AS DateTime), CAST(N'2023-09-30T00:00:00.000' AS DateTime), CAST(N'2023-09-30T00:00:00.000' AS DateTime), CAST(N'2023-09-25T00:00:00.000' AS DateTime), 1, 9, 2023, N'Generado', 3, 1, N'vacio', CAST(N'2023-10-26T21:05:56.207' AS DateTime), NULL, NULL, NULL)
+INSERT [dbo].[PeriodoContable] ([id], [tippagcueid], [fechaini], [fechafin], [fechapago], [fechacorte], [frecuencia], [mes], [Aniocontable], [estado], [idperempresa], [activo], [usuariocreacion], [fechacreacion], [usuariomodifica], [fechamodificacion], [perfiscalid]) VALUES (6, N'202382', CAST(N'2023-08-16T00:00:00.000' AS DateTime), CAST(N'2023-08-30T00:00:00.000' AS DateTime), CAST(N'2023-08-30T00:00:00.000' AS DateTime), CAST(N'2023-08-25T00:00:00.000' AS DateTime), 2, 8, 2023, N'cerrado', 3, 1, N'vacio', CAST(N'2023-10-26T21:08:55.387' AS DateTime), N'vacio', CAST(N'2023-10-27T19:24:45.323' AS DateTime), NULL)
+INSERT [dbo].[PeriodoContable] ([id], [tippagcueid], [fechaini], [fechafin], [fechapago], [fechacorte], [frecuencia], [mes], [Aniocontable], [estado], [idperempresa], [activo], [usuariocreacion], [fechacreacion], [usuariomodifica], [fechamodificacion], [perfiscalid]) VALUES (7, N'202391', CAST(N'2023-09-01T00:00:00.000' AS DateTime), CAST(N'2023-09-15T00:00:00.000' AS DateTime), CAST(N'2023-11-15T00:00:00.000' AS DateTime), CAST(N'2023-11-10T00:00:00.000' AS DateTime), 1, 9, 2023, N'Generado', 3, 1, N'rfune3', CAST(N'2023-11-06T14:46:21.103' AS DateTime), NULL, NULL, 3)
+INSERT [dbo].[PeriodoContable] ([id], [tippagcueid], [fechaini], [fechafin], [fechapago], [fechacorte], [frecuencia], [mes], [Aniocontable], [estado], [idperempresa], [activo], [usuariocreacion], [fechacreacion], [usuariomodifica], [fechamodificacion], [perfiscalid]) VALUES (8, N'2023101', CAST(N'2023-10-01T00:00:00.000' AS DateTime), CAST(N'2023-10-15T00:00:00.000' AS DateTime), CAST(N'2023-10-15T00:00:00.000' AS DateTime), CAST(N'2023-10-10T00:00:00.000' AS DateTime), 1, 10, 2023, N'Generado', 3, 1, N'ysanchez', CAST(N'2023-11-16T10:23:52.590' AS DateTime), NULL, NULL, 3)
+SET IDENTITY_INSERT [dbo].[PeriodoContable] OFF
+SET IDENTITY_INSERT [dbo].[periodofiscal] ON 
+
+INSERT [dbo].[periodofiscal] ([id], [fechaini], [fechafin], [estado], [idempresa], [activo], [usuariocreacion], [fechacreacion], [usuariomodifica], [fechamodificacion]) VALUES (1, CAST(N'2023-01-02' AS Date), CAST(N'2024-01-01' AS Date), N'Generado', 3, 0, N'rfune3', CAST(N'2023-11-06T14:00:37.357' AS DateTime), N'rfune3', CAST(N'2023-11-06T14:00:59.653' AS DateTime))
+INSERT [dbo].[periodofiscal] ([id], [fechaini], [fechafin], [estado], [idempresa], [activo], [usuariocreacion], [fechacreacion], [usuariomodifica], [fechamodificacion]) VALUES (2, CAST(N'2023-01-02' AS Date), CAST(N'2024-01-01' AS Date), N'CERRADO', 3, 1, N'rfune3', CAST(N'2023-11-06T14:03:23.247' AS DateTime), N'rfune3', CAST(N'2023-11-06T14:03:28.843' AS DateTime))
+INSERT [dbo].[periodofiscal] ([id], [fechaini], [fechafin], [estado], [idempresa], [activo], [usuariocreacion], [fechacreacion], [usuariomodifica], [fechamodificacion]) VALUES (3, CAST(N'2023-01-02' AS Date), CAST(N'2024-01-01' AS Date), N'Generado', 3, 1, N'rfune3', CAST(N'2023-11-06T14:41:24.717' AS DateTime), NULL, NULL)
+SET IDENTITY_INSERT [dbo].[periodofiscal] OFF
+SET IDENTITY_INSERT [dbo].[periodoinforme] ON 
+
+INSERT [dbo].[periodoinforme] ([id], [idperiodo], [fechainforme], [activo], [usuariocreacion], [fechacreacion], [usuariomodificacion], [fechamodifico]) VALUES (1, 5, CAST(N'2023-09-28' AS Date), 0, N'vacio', CAST(N'2023-10-27T20:28:02.877' AS DateTime), N'vacio', CAST(N'2023-10-27T20:31:40.820' AS DateTime))
+INSERT [dbo].[periodoinforme] ([id], [idperiodo], [fechainforme], [activo], [usuariocreacion], [fechacreacion], [usuariomodificacion], [fechamodifico]) VALUES (2, 5, CAST(N'2023-09-28' AS Date), 0, N'vacio', CAST(N'2023-10-27T20:29:28.280' AS DateTime), N'vacio', CAST(N'2023-10-27T20:31:40.820' AS DateTime))
+SET IDENTITY_INSERT [dbo].[periodoinforme] OFF
+SET IDENTITY_INSERT [dbo].[PeriodoSaldoHis] ON 
+
+INSERT [dbo].[PeriodoSaldoHis] ([Id], [PerId], [perCueid], [valorcuenta], [persalempresa]) VALUES (2, 1, 2, CAST(-1300.0000 AS Decimal(10, 4)), 3)
+INSERT [dbo].[PeriodoSaldoHis] ([Id], [PerId], [perCueid], [valorcuenta], [persalempresa]) VALUES (3, 1, 7, CAST(-2800.0000 AS Decimal(10, 4)), 3)
+INSERT [dbo].[PeriodoSaldoHis] ([Id], [PerId], [perCueid], [valorcuenta], [persalempresa]) VALUES (4, 1, 8, CAST(2800.0000 AS Decimal(10, 4)), 3)
+INSERT [dbo].[PeriodoSaldoHis] ([Id], [PerId], [perCueid], [valorcuenta], [persalempresa]) VALUES (5, 1, 10, CAST(-4300.0000 AS Decimal(10, 4)), 3)
+SET IDENTITY_INSERT [dbo].[PeriodoSaldoHis] OFF
+SET IDENTITY_INSERT [dbo].[proveedores] ON 
+
+INSERT [dbo].[proveedores] ([Id], [NombreCia], [NombreContacto], [email], [Telefono], [RTN], [Activo], [Direccion], [ProIdEmpresa], [FechaCreacion], [Deuda], [ProtipMon], [usuariocreacion], [fechamodificacion], [usuariomodifico], [subcueidpro]) VALUES (1, N'plastinova', N'lesly', N'lesly@gmail.com', N'26602323', N'34343434', 1, N'camino a dos caminos', 3, CAST(N'2023-10-20' AS Date), CAST(1200.0000 AS Decimal(10, 4)), 1, N'rfune3', NULL, NULL, NULL)
+INSERT [dbo].[proveedores] ([Id], [NombreCia], [NombreContacto], [email], [Telefono], [RTN], [Activo], [Direccion], [ProIdEmpresa], [FechaCreacion], [Deuda], [ProtipMon], [usuariocreacion], [fechamodificacion], [usuariomodifico], [subcueidpro]) VALUES (2, N'molinero sas', N'maycols', N'maycol@molinerocom', N'266023238', N'6565678', 1, N'san pedro sulas', 3, CAST(N'2023-10-19' AS Date), CAST(12500.0000 AS Decimal(10, 4)), 1, N'rfune3', CAST(N'2023-10-21T12:42:11.137' AS DateTime), N'vacio', NULL)
+INSERT [dbo].[proveedores] ([Id], [NombreCia], [NombreContacto], [email], [Telefono], [RTN], [Activo], [Direccion], [ProIdEmpresa], [FechaCreacion], [Deuda], [ProtipMon], [usuariocreacion], [fechamodificacion], [usuariomodifico], [subcueidpro]) VALUES (3, N'confeciones dos caminos', N'werner', N'werner@fotlinc.com', N'95674332', N'05011995003121', 1, N'parque zip bufalo', 3, CAST(N'2023-10-21' AS Date), CAST(15000.0000 AS Decimal(10, 4)), 1, N'vacio', CAST(N'2023-10-24T20:57:48.770' AS DateTime), N'vacio', 12)
+INSERT [dbo].[proveedores] ([Id], [NombreCia], [NombreContacto], [email], [Telefono], [RTN], [Activo], [Direccion], [ProIdEmpresa], [FechaCreacion], [Deuda], [ProtipMon], [usuariocreacion], [fechamodificacion], [usuariomodifico], [subcueidpro]) VALUES (4, N'pepsi sa', N'armando@pepsihn.com', N'armando@pepsihn.com', N'26783434', N'05061980003122', 1, N'san pedro sula bo guardia', 3, CAST(N'2023-10-24' AS Date), CAST(14000.0000 AS Decimal(10, 4)), 1, N'vacio', NULL, NULL, 10)
+INSERT [dbo].[proveedores] ([Id], [NombreCia], [NombreContacto], [email], [Telefono], [RTN], [Activo], [Direccion], [ProIdEmpresa], [FechaCreacion], [Deuda], [ProtipMon], [usuariocreacion], [fechamodificacion], [usuariomodifico], [subcueidpro]) VALUES (5, N'Bocadeli', N'Daniela ', N'Daniela@boca.com', N'25501717', N'0506189723026', 1, N'San Pedro Sula', 3, CAST(N'2023-10-28' AS Date), CAST(13560.0000 AS Decimal(10, 4)), 1, N'vacio', NULL, NULL, 14)
+INSERT [dbo].[proveedores] ([Id], [NombreCia], [NombreContacto], [email], [Telefono], [RTN], [Activo], [Direccion], [ProIdEmpresa], [FechaCreacion], [Deuda], [ProtipMon], [usuariocreacion], [fechamodificacion], [usuariomodifico], [subcueidpro]) VALUES (6, N'gildan villanueva a', N'maria', N'maria@gildan.com', N'22664455', N'04041960002311', 1, N'villanuve bo centro ', 3, CAST(N'2023-11-16' AS Date), CAST(30000.0000 AS Decimal(10, 4)), 1, N'ysanchez', NULL, NULL, 16)
+SET IDENTITY_INSERT [dbo].[proveedores] OFF
+SET IDENTITY_INSERT [dbo].[rol] ON 
+
+INSERT [dbo].[rol] ([rolid], [descripcion], [activo], [roldEmpresa]) VALUES (1, N'ADMINISTRADOR', 1, 3)
+INSERT [dbo].[rol] ([rolid], [descripcion], [activo], [roldEmpresa]) VALUES (2, N'CONTADOR', 1, 3)
+INSERT [dbo].[rol] ([rolid], [descripcion], [activo], [roldEmpresa]) VALUES (3, N'SUPERVISOR', 1, 3)
+INSERT [dbo].[rol] ([rolid], [descripcion], [activo], [roldEmpresa]) VALUES (4, N'VENDEDOR', 1, 3)
+INSERT [dbo].[rol] ([rolid], [descripcion], [activo], [roldEmpresa]) VALUES (5, N'COMPRAS', 1, 3)
+INSERT [dbo].[rol] ([rolid], [descripcion], [activo], [roldEmpresa]) VALUES (6, N'REQUISADOR', 1, 3)
+INSERT [dbo].[rol] ([rolid], [descripcion], [activo], [roldEmpresa]) VALUES (7, N'ENTRENAMIENTO', 1, 3)
+INSERT [dbo].[rol] ([rolid], [descripcion], [activo], [roldEmpresa]) VALUES (8, N'calidad', 1, 3)
+SET IDENTITY_INSERT [dbo].[rol] OFF
+SET IDENTITY_INSERT [dbo].[rolesopciones] ON 
+
+INSERT [dbo].[rolesopciones] ([Id], [idrol], [IdOpcion], [Activo]) VALUES (13, 1, 1, 1)
+INSERT [dbo].[rolesopciones] ([Id], [idrol], [IdOpcion], [Activo]) VALUES (14, 1, 2, 1)
+INSERT [dbo].[rolesopciones] ([Id], [idrol], [IdOpcion], [Activo]) VALUES (15, 1, 3, 1)
+INSERT [dbo].[rolesopciones] ([Id], [idrol], [IdOpcion], [Activo]) VALUES (17, 1, 4, 1)
+INSERT [dbo].[rolesopciones] ([Id], [idrol], [IdOpcion], [Activo]) VALUES (18, 1, 5, 1)
+INSERT [dbo].[rolesopciones] ([Id], [idrol], [IdOpcion], [Activo]) VALUES (19, 1, 6, 1)
+INSERT [dbo].[rolesopciones] ([Id], [idrol], [IdOpcion], [Activo]) VALUES (20, 1, 7, 1)
+INSERT [dbo].[rolesopciones] ([Id], [idrol], [IdOpcion], [Activo]) VALUES (21, 1, 8, 1)
+INSERT [dbo].[rolesopciones] ([Id], [idrol], [IdOpcion], [Activo]) VALUES (22, 1, 9, 1)
+INSERT [dbo].[rolesopciones] ([Id], [idrol], [IdOpcion], [Activo]) VALUES (23, 1, 10, 1)
+INSERT [dbo].[rolesopciones] ([Id], [idrol], [IdOpcion], [Activo]) VALUES (24, 1, 11, 1)
+INSERT [dbo].[rolesopciones] ([Id], [idrol], [IdOpcion], [Activo]) VALUES (25, 1, 12, 1)
+INSERT [dbo].[rolesopciones] ([Id], [idrol], [IdOpcion], [Activo]) VALUES (26, 1, 13, 1)
+INSERT [dbo].[rolesopciones] ([Id], [idrol], [IdOpcion], [Activo]) VALUES (27, 1, 14, 1)
+INSERT [dbo].[rolesopciones] ([Id], [idrol], [IdOpcion], [Activo]) VALUES (28, 1, 15, 1)
+INSERT [dbo].[rolesopciones] ([Id], [idrol], [IdOpcion], [Activo]) VALUES (29, 1, 16, 1)
+INSERT [dbo].[rolesopciones] ([Id], [idrol], [IdOpcion], [Activo]) VALUES (30, 1, 17, 0)
+INSERT [dbo].[rolesopciones] ([Id], [idrol], [IdOpcion], [Activo]) VALUES (31, 1, 18, 1)
+INSERT [dbo].[rolesopciones] ([Id], [idrol], [IdOpcion], [Activo]) VALUES (32, 1, 19, 1)
+INSERT [dbo].[rolesopciones] ([Id], [idrol], [IdOpcion], [Activo]) VALUES (33, 1, 20, 1)
+INSERT [dbo].[rolesopciones] ([Id], [idrol], [IdOpcion], [Activo]) VALUES (34, 1, 21, 1)
+INSERT [dbo].[rolesopciones] ([Id], [idrol], [IdOpcion], [Activo]) VALUES (35, 1, 22, 1)
+INSERT [dbo].[rolesopciones] ([Id], [idrol], [IdOpcion], [Activo]) VALUES (36, 1, 23, 1)
+INSERT [dbo].[rolesopciones] ([Id], [idrol], [IdOpcion], [Activo]) VALUES (37, 1, 24, 1)
+INSERT [dbo].[rolesopciones] ([Id], [idrol], [IdOpcion], [Activo]) VALUES (38, 1, 25, 1)
+INSERT [dbo].[rolesopciones] ([Id], [idrol], [IdOpcion], [Activo]) VALUES (39, 1, 26, 1)
+INSERT [dbo].[rolesopciones] ([Id], [idrol], [IdOpcion], [Activo]) VALUES (40, 1, 27, 1)
+INSERT [dbo].[rolesopciones] ([Id], [idrol], [IdOpcion], [Activo]) VALUES (41, 1, 28, 1)
+INSERT [dbo].[rolesopciones] ([Id], [idrol], [IdOpcion], [Activo]) VALUES (42, 1, 29, 1)
+INSERT [dbo].[rolesopciones] ([Id], [idrol], [IdOpcion], [Activo]) VALUES (43, 1, 30, 1)
+INSERT [dbo].[rolesopciones] ([Id], [idrol], [IdOpcion], [Activo]) VALUES (47, 1, 33, 1)
+SET IDENTITY_INSERT [dbo].[rolesopciones] OFF
+SET IDENTITY_INSERT [dbo].[subcuenta] ON 
+
+INSERT [dbo].[subcuenta] ([id], [Cuentacontablesub], [Descripcion], [Activo], [CuentaId], [SubCueIdEmpresa], [usuariocreacion], [fechacreacion]) VALUES (1, N'1112-001', N'cuenta test', 1, 2, 3, NULL, NULL)
+INSERT [dbo].[subcuenta] ([id], [Cuentacontablesub], [Descripcion], [Activo], [CuentaId], [SubCueIdEmpresa], [usuariocreacion], [fechacreacion]) VALUES (2, N'2112-002', N'clientes plastinovass', 1, 2, 3, N'vacio', CAST(N'2023-10-22T13:32:37.043' AS DateTime))
+INSERT [dbo].[subcuenta] ([id], [Cuentacontablesub], [Descripcion], [Activo], [CuentaId], [SubCueIdEmpresa], [usuariocreacion], [fechacreacion]) VALUES (3, N'1112-003', N'pollo rey', 1, 2, 3, N'vacio', CAST(N'2023-10-22T14:50:58.153' AS DateTime))
+INSERT [dbo].[subcuenta] ([id], [Cuentacontablesub], [Descripcion], [Activo], [CuentaId], [SubCueIdEmpresa], [usuariocreacion], [fechacreacion]) VALUES (4, N'1112-004', N'pollo rey sa', 1, 2, 3, N'vacio', CAST(N'2023-10-22T14:52:14.367' AS DateTime))
+INSERT [dbo].[subcuenta] ([id], [Cuentacontablesub], [Descripcion], [Activo], [CuentaId], [SubCueIdEmpresa], [usuariocreacion], [fechacreacion]) VALUES (5, N'1112-005', N'pollo rey', 1, 2, 3, N'vacio', CAST(N'2023-10-22T15:15:42.570' AS DateTime))
+INSERT [dbo].[subcuenta] ([id], [Cuentacontablesub], [Descripcion], [Activo], [CuentaId], [SubCueIdEmpresa], [usuariocreacion], [fechacreacion]) VALUES (6, N'1112-006', N'pollo rey', 1, 2, 3, N'vacio', CAST(N'2023-10-22T15:17:51.370' AS DateTime))
+INSERT [dbo].[subcuenta] ([id], [Cuentacontablesub], [Descripcion], [Activo], [CuentaId], [SubCueIdEmpresa], [usuariocreacion], [fechacreacion]) VALUES (7, N'1112-007', N'pollo rey', 1, 2, 3, N'vacio', CAST(N'2023-10-22T15:23:07.410' AS DateTime))
+INSERT [dbo].[subcuenta] ([id], [Cuentacontablesub], [Descripcion], [Activo], [CuentaId], [SubCueIdEmpresa], [usuariocreacion], [fechacreacion]) VALUES (8, N'11316-001', N'pronorsa central', 1, 10, 3, N'vacio', CAST(N'2023-10-22T15:28:22.337' AS DateTime))
+INSERT [dbo].[subcuenta] ([id], [Cuentacontablesub], [Descripcion], [Activo], [CuentaId], [SubCueIdEmpresa], [usuariocreacion], [fechacreacion]) VALUES (9, N'11316-002', N'cadeca ', 1, 10, 3, N'vacio', CAST(N'2023-10-22T16:21:03.610' AS DateTime))
+INSERT [dbo].[subcuenta] ([id], [Cuentacontablesub], [Descripcion], [Activo], [CuentaId], [SubCueIdEmpresa], [usuariocreacion], [fechacreacion]) VALUES (10, N'211-001', N'pepsi sa de d.v', 1, 7, 3, N'vacio', CAST(N'2023-10-24T20:49:13.240' AS DateTime))
+INSERT [dbo].[subcuenta] ([id], [Cuentacontablesub], [Descripcion], [Activo], [CuentaId], [SubCueIdEmpresa], [usuariocreacion], [fechacreacion]) VALUES (12, N'211-002', N'confeciones dos caminos sa de cv', 1, 7, 3, N'vacio', CAST(N'2023-10-24T20:57:31.130' AS DateTime))
+INSERT [dbo].[subcuenta] ([id], [Cuentacontablesub], [Descripcion], [Activo], [CuentaId], [SubCueIdEmpresa], [usuariocreacion], [fechacreacion]) VALUES (13, N'11317-001', N'KAPA', 1, 13, 3, N'vacio', CAST(N'2023-10-28T14:38:34.820' AS DateTime))
+INSERT [dbo].[subcuenta] ([id], [Cuentacontablesub], [Descripcion], [Activo], [CuentaId], [SubCueIdEmpresa], [usuariocreacion], [fechacreacion]) VALUES (14, N'212-001', N'Bocadeli', 1, 14, 3, N'vacio', CAST(N'2023-10-28T15:05:14.243' AS DateTime))
+INSERT [dbo].[subcuenta] ([id], [Cuentacontablesub], [Descripcion], [Activo], [CuentaId], [SubCueIdEmpresa], [usuariocreacion], [fechacreacion]) VALUES (15, N'11316-003', N'paradise', 1, 10, 3, N'ysanchez', CAST(N'2023-11-16T12:02:56.440' AS DateTime))
+INSERT [dbo].[subcuenta] ([id], [Cuentacontablesub], [Descripcion], [Activo], [CuentaId], [SubCueIdEmpresa], [usuariocreacion], [fechacreacion]) VALUES (16, N'211-003', N'gildan villanueva a', 1, 7, 3, N'ysanchez', CAST(N'2023-11-16T12:15:51.887' AS DateTime))
+SET IDENTITY_INSERT [dbo].[subcuenta] OFF
+SET IDENTITY_INSERT [dbo].[TipoMoneda] ON 
+
+INSERT [dbo].[TipoMoneda] ([Id], [Descripcion], [Simbolo], [PaisIsob], [PaisIsoc], [Moneda], [MonIdEmpresa], [Activo], [usuariocreacion], [fechamodificacion], [usuariomodifico], [fechacreacion]) VALUES (1, N'Lempira (HNL)', N'L', N'HN', N'HND', N'HNL', 3, 1, NULL, NULL, NULL, NULL)
+INSERT [dbo].[TipoMoneda] ([Id], [Descripcion], [Simbolo], [PaisIsob], [PaisIsoc], [Moneda], [MonIdEmpresa], [Activo], [usuariocreacion], [fechamodificacion], [usuariomodifico], [fechacreacion]) VALUES (2, N'United States dollar', N'$', N'US', N'USA', N'USD', 3, 1, NULL, CAST(N'2023-10-21T14:49:11.037' AS DateTime), N'vacio', NULL)
+INSERT [dbo].[TipoMoneda] ([Id], [Descripcion], [Simbolo], [PaisIsob], [PaisIsoc], [Moneda], [MonIdEmpresa], [Activo], [usuariocreacion], [fechamodificacion], [usuariomodifico], [fechacreacion]) VALUES (3, N'Canadian dollar (CAD)', N'$', N'	CA', N'CAN', N'CAD', 3, 1, N'vacio', NULL, NULL, CAST(N'2023-10-21T15:22:05.880' AS DateTime))
+INSERT [dbo].[TipoMoneda] ([Id], [Descripcion], [Simbolo], [PaisIsob], [PaisIsoc], [Moneda], [MonIdEmpresa], [Activo], [usuariocreacion], [fechamodificacion], [usuariomodifico], [fechacreacion]) VALUES (4, N'Balboa (PAB)', N'B/.', N'PA', N'PAN', N'PAB', 3, 1, N'ysanchez', NULL, NULL, CAST(N'2023-11-16T11:07:44.677' AS DateTime))
+SET IDENTITY_INSERT [dbo].[TipoMoneda] OFF
+SET IDENTITY_INSERT [dbo].[TipoPago] ON 
+
+INSERT [dbo].[TipoPago] ([id], [tippagcueid], [activo], [tippagoIdEmpresa], [descripcion], [cuenta]) VALUES (1, 2, 1, 3, N'BANCOS fichosa', N'2000010001')
+INSERT [dbo].[TipoPago] ([id], [tippagcueid], [activo], [tippagoIdEmpresa], [descripcion], [cuenta]) VALUES (2, 8, 1, 3, N'EFECTIVO', N'NA')
+SET IDENTITY_INSERT [dbo].[TipoPago] OFF
+INSERT [dbo].[tipoTransacciones] ([id], [descripcion], [activo], [ttraidempresa]) VALUES (N'partida', N'transacciones de partidas', 0, 3)
+INSERT [dbo].[tipoTransacciones] ([id], [descripcion], [activo], [ttraidempresa]) VALUES (N'Partidas', N'creacion de partidas', 1, 3)
+INSERT [dbo].[tipoTransacciones] ([id], [descripcion], [activo], [ttraidempresa]) VALUES (N'PartidasCliente', N'cuando cliente paga ', 1, 3)
+SET IDENTITY_INSERT [dbo].[transacciones] ON 
+
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (1, 1, N'Partidas', 3, N'yanoe01', CAST(N'2023-10-11T14:59:32.170' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (2, 2, N'Partidas', 3, N'yanoe01', CAST(N'2023-10-11T14:59:32.187' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (3, 3, N'Partidas', 3, N'yanoe01', CAST(N'2023-10-11T14:59:32.187' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (4, 4, N'Partidas', 3, N'yanoe01', CAST(N'2023-10-11T20:39:45.810' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (5, 5, N'Partidas', 3, N'yanoe01', CAST(N'2023-10-11T20:39:46.963' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (6, 6, N'Partidas', 3, N'yanoe01', CAST(N'2023-10-11T20:50:53.297' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (7, 7, N'Partidas', 3, N'yanoe01', CAST(N'2023-10-11T20:50:53.500' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (8, 8, N'Partidas', 3, N'yanoe01', CAST(N'2023-10-12T13:28:06.593' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (9, 9, N'Partidas', 3, N'yanoe01', CAST(N'2023-10-12T13:28:06.610' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (10, 10, N'Partidas', 3, N'yanoe01', CAST(N'2023-10-17T21:12:17.490' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (11, 11, N'Partidas', 3, N'yanoe01', CAST(N'2023-10-17T21:12:17.660' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (12, 12, N'PartidasClientedebe', 3, N'vacio', CAST(N'2023-10-24T19:35:36.650' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (13, 13, N'PartidasCliente', 3, N'vacio', CAST(N'2023-10-24T19:35:36.947' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (14, 14, N'PartidasCliente', 3, N'vacio', CAST(N'2023-10-24T19:54:24.490' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (15, 15, N'PartidasCliente', 3, N'vacio', CAST(N'2023-10-24T19:54:25.453' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (16, 16, N'Pagoproveedor', 3, N'vacio', CAST(N'2023-10-25T19:13:14.403' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (17, 17, N'Pagoproveedor', 3, N'vacio', CAST(N'2023-10-25T19:13:14.637' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (18, 18, N'Pagoproveedor', 3, N'vacio', CAST(N'2023-10-25T19:34:55.533' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (19, 19, N'Pagoproveedor', 3, N'vacio', CAST(N'2023-10-25T19:34:55.737' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (20, NULL, N'Partidas', 3, N'vacio', CAST(N'2023-10-27T20:57:30.580' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (21, NULL, N'Partidas', 3, N'vacio', CAST(N'2023-10-27T20:57:50.647' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (22, NULL, N'Partidas', 3, N'vacio', CAST(N'2023-10-27T21:00:15.390' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (23, 23, N'Partidas', 3, N'vacio', CAST(N'2023-10-27T21:12:09.320' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (24, 24, N'Partidas', 3, N'vacio', CAST(N'2023-10-27T21:12:12.627' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (25, 25, N'Pagoproveedor', 3, N'vacio', CAST(N'2023-10-27T21:17:55.983' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (26, 26, N'Pagoproveedor', 3, N'vacio', CAST(N'2023-10-27T21:17:56.187' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (27, 27, N'PartidasCliente', 3, N'vacio', CAST(N'2023-10-27T21:23:15.043' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (28, 28, N'PartidasCliente', 3, N'vacio', CAST(N'2023-10-27T21:23:15.353' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (29, 29, N'Partidas', 3, N'vacio', CAST(N'2023-10-28T13:51:14.010' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (30, 30, N'Partidas', 3, N'vacio', CAST(N'2023-10-28T13:51:20.987' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (31, 31, N'PartidasCliente', 3, N'vacio', CAST(N'2023-10-28T14:40:27.070' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (32, 32, N'PartidasCliente', 3, N'vacio', CAST(N'2023-10-28T14:40:27.243' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (33, 33, N'Pagoproveedor', 3, N'vacio', CAST(N'2023-10-28T15:07:18.547' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (34, 34, N'Pagoproveedor', 3, N'vacio', CAST(N'2023-10-28T15:07:18.720' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (35, 35, N'Partidas', 3, N'rfune3', CAST(N'2023-11-11T14:05:00.703' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (36, 36, N'Partidas', 3, N'rfune3', CAST(N'2023-11-11T14:05:00.913' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (37, 37, N'Partidas', 3, N'rfune3', CAST(N'2023-11-11T14:10:06.330' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (38, 38, N'Partidas', 3, N'rfune3', CAST(N'2023-11-11T14:10:06.513' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (39, 39, N'Partidas', 3, N'rfune3', CAST(N'2023-11-11T14:15:51.660' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (40, 40, N'Partidas', 3, N'rfune3', CAST(N'2023-11-11T14:15:51.867' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (41, 41, N'Partidas', 3, N'rfune3', CAST(N'2023-11-11T14:21:26.330' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (42, 42, N'Partidas', 3, N'rfune3', CAST(N'2023-11-11T14:21:26.500' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (43, 43, N'Partidas', 3, N'rfune3', CAST(N'2023-11-11T14:22:03.280' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (44, 44, N'Partidas', 3, N'rfune3', CAST(N'2023-11-11T14:22:03.457' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (45, 45, N'Partidas', 3, N'rfune3', CAST(N'2023-11-11T14:39:05.020' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (46, 46, N'Partidas', 3, N'rfune3', CAST(N'2023-11-11T14:39:05.213' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (47, 47, N'Partidas', 3, N'rfune3', CAST(N'2023-11-11T14:40:19.160' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (48, 48, N'Partidas', 3, N'rfune3', CAST(N'2023-11-11T14:40:19.357' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (49, 49, N'Partidas', 3, N'rfune3', CAST(N'2023-11-11T14:42:19.017' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (50, 50, N'Partidas', 3, N'rfune3', CAST(N'2023-11-11T14:42:19.223' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (51, 51, N'Partidas', 3, N'rfune3', CAST(N'2023-11-11T14:45:59.000' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (52, 52, N'Partidas', 3, N'rfune3', CAST(N'2023-11-11T14:45:59.210' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (53, 53, N'Partidas', 3, N'rfune3', CAST(N'2023-11-11T15:01:42.010' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (54, 54, N'Partidas', 3, N'rfune3', CAST(N'2023-11-11T15:01:42.183' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (55, 55, N'Partidas', 3, N'rfune3', CAST(N'2023-11-14T15:39:55.550' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (56, 56, N'Partidas', 3, N'rfune3', CAST(N'2023-11-14T15:39:55.560' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (57, 57, N'Partidas', 3, N'ysanchez', CAST(N'2023-11-16T10:39:39.137' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (58, 58, N'Partidas', 3, N'ysanchez', CAST(N'2023-11-16T10:39:39.177' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (59, 59, N'Partidas', 3, N'ysanchez', CAST(N'2023-11-16T10:46:44.520' AS DateTime))
+INSERT [dbo].[transacciones] ([Id], [TraParId], [TipoTransaccion], [TraIdEmpresa], [UsuarioCreacion], [FechaCreacion]) VALUES (60, 60, N'Partidas', 3, N'ysanchez', CAST(N'2023-11-16T10:46:44.520' AS DateTime))
+SET IDENTITY_INSERT [dbo].[transacciones] OFF
+SET IDENTITY_INSERT [dbo].[usuario] ON 
+
+INSERT [dbo].[usuario] ([id], [primernombre], [segundonombre], [primerapellido], [segundoapellido], [estado], [fechaIngreso], [fechaRetiro], [dni], [usuario], [clave], [preguntaSeguridad], [RespuestaSeguridad], [telefono], [sexo], [idrol], [intentos], [usuidempresa]) VALUES (1, N'Ritchie ', N'Christoper', N'Funes', N'Garcia', N'A', CAST(N'2023-10-14' AS Date), NULL, N'12345', N'rfune3', N'12345', N'nombre hermana', N'telma', N'33441122', N'M', 1, 3, 3)
+INSERT [dbo].[usuario] ([id], [primernombre], [segundonombre], [primerapellido], [segundoapellido], [estado], [fechaIngreso], [fechaRetiro], [dni], [usuario], [clave], [preguntaSeguridad], [RespuestaSeguridad], [telefono], [sexo], [idrol], [intentos], [usuidempresa]) VALUES (2, N'mario', N' dario', N'banegas', N'conca', N'A', CAST(N'2023-10-18' AS Date), NULL, N'', N'mconca', N'12345', N'primer animal', N'perro', N'97090505', N'M', 1, 3, 3)
+INSERT [dbo].[usuario] ([id], [primernombre], [segundonombre], [primerapellido], [segundoapellido], [estado], [fechaIngreso], [fechaRetiro], [dni], [usuario], [clave], [preguntaSeguridad], [RespuestaSeguridad], [telefono], [sexo], [idrol], [intentos], [usuidempresa]) VALUES (3, N'claudio', N' enrigque', N'bravo', N'diaz', N'A', CAST(N'2023-10-18' AS Date), NULL, N'na', N'cdiaz', N'8N62X8oZPiM=', N'perro favorito', N'8jimcPBwKFk=', N'99001122', N'M', 1, 3, 3)
+INSERT [dbo].[usuario] ([id], [primernombre], [segundonombre], [primerapellido], [segundoapellido], [estado], [fechaIngreso], [fechaRetiro], [dni], [usuario], [clave], [preguntaSeguridad], [RespuestaSeguridad], [telefono], [sexo], [idrol], [intentos], [usuidempresa]) VALUES (4, N'mario', N' adonay', N'balotelli', N'gomez', N'A', CAST(N'2023-10-18' AS Date), NULL, N'na', N'mgomez', N'8N62X8oZPiM=', N'primero gol', N'cqJQPxkMibc=', N'11223344', N'M', 1, 3, 3)
+INSERT [dbo].[usuario] ([id], [primernombre], [segundonombre], [primerapellido], [segundoapellido], [estado], [fechaIngreso], [fechaRetiro], [dni], [usuario], [clave], [preguntaSeguridad], [RespuestaSeguridad], [telefono], [sexo], [idrol], [intentos], [usuidempresa]) VALUES (5, N'marcelos', N'jonies', N'alvarado', N'magallose', N'A', CAST(N'2023-10-19' AS Date), NULL, N'naa', N'mmagallon', N'Sondnc9UwPs=', N'primer gol europa', N'SMQKNFmj1VkKsJwD4ts7DA==', N'1234567890', N'M', 1, 3, 3)
+INSERT [dbo].[usuario] ([id], [primernombre], [segundonombre], [primerapellido], [segundoapellido], [estado], [fechaIngreso], [fechaRetiro], [dni], [usuario], [clave], [preguntaSeguridad], [RespuestaSeguridad], [telefono], [sexo], [idrol], [intentos], [usuidempresa]) VALUES (6, N'yanori', N'keila', N'osorto', N'sanchez', N'A', CAST(N'2023-10-19' AS Date), NULL, N'na', N'ysanchez', N'oKGb/Vpx84g=', N'como se llama su rubi', N'dRtRsnLv338=', N'88223344', N'F', 1, 3, 3)
+INSERT [dbo].[usuario] ([id], [primernombre], [segundonombre], [primerapellido], [segundoapellido], [estado], [fechaIngreso], [fechaRetiro], [dni], [usuario], [clave], [preguntaSeguridad], [RespuestaSeguridad], [telefono], [sexo], [idrol], [intentos], [usuidempresa]) VALUES (7, N'jorge', N'alberto', N'peralta', N'mouse', N'A', CAST(N'2023-11-16' AS Date), NULL, N'0501199900231', N'jmouse', N'LUOZTS3r37o=', N'primera mascota', N'TJGTuO6WDiE=', N'99887744', N'M', 1, 3, 3)
+SET IDENTITY_INSERT [dbo].[usuario] OFF
+SET IDENTITY_INSERT [dbo].[usuarioroles] ON 
+
+INSERT [dbo].[usuarioroles] ([Id], [UsuarioId], [ROlidUsu], [Activo]) VALUES (1, 1, 1, 1)
+INSERT [dbo].[usuarioroles] ([Id], [UsuarioId], [ROlidUsu], [Activo]) VALUES (2, 6, 1, 1)
+INSERT [dbo].[usuarioroles] ([Id], [UsuarioId], [ROlidUsu], [Activo]) VALUES (3, 2, 3, 0)
+INSERT [dbo].[usuarioroles] ([Id], [UsuarioId], [ROlidUsu], [Activo]) VALUES (4, 3, 4, 1)
+SET IDENTITY_INSERT [dbo].[usuarioroles] OFF
+ALTER TABLE [dbo].[ClasificacionCuenta]  WITH CHECK ADD  CONSTRAINT [fkTipempresaclacue] FOREIGN KEY([ClaIdempresa])
+REFERENCES [dbo].[empresa] ([Id])
+GO
+ALTER TABLE [dbo].[ClasificacionCuenta] CHECK CONSTRAINT [fkTipempresaclacue]
+GO
+ALTER TABLE [dbo].[Cliente]  WITH CHECK ADD FOREIGN KEY([subcueidcli])
+REFERENCES [dbo].[subcuenta] ([id])
+GO
+ALTER TABLE [dbo].[Cliente]  WITH CHECK ADD  CONSTRAINT [fkCliIdEmpresa] FOREIGN KEY([CliIdEmpresa])
+REFERENCES [dbo].[empresa] ([Id])
+GO
+ALTER TABLE [dbo].[Cliente] CHECK CONSTRAINT [fkCliIdEmpresa]
+GO
+ALTER TABLE [dbo].[Cliente]  WITH CHECK ADD  CONSTRAINT [fkCliTipMonid] FOREIGN KEY([CliTipMonid])
+REFERENCES [dbo].[TipoMoneda] ([Id])
+GO
+ALTER TABLE [dbo].[Cliente] CHECK CONSTRAINT [fkCliTipMonid]
+GO
+ALTER TABLE [dbo].[Correlativo]  WITH CHECK ADD  CONSTRAINT [fkCorrIdEmpEmp] FOREIGN KEY([CorrIdEmp])
+REFERENCES [dbo].[empresa] ([Id])
+GO
+ALTER TABLE [dbo].[Correlativo] CHECK CONSTRAINT [fkCorrIdEmpEmp]
+GO
+ALTER TABLE [dbo].[Cuenta]  WITH CHECK ADD  CONSTRAINT [fkClasificacionCuentaCuenta] FOREIGN KEY([ClaseCuentaId])
+REFERENCES [dbo].[ClasificacionCuenta] ([Id])
+GO
+ALTER TABLE [dbo].[Cuenta] CHECK CONSTRAINT [fkClasificacionCuentaCuenta]
+GO
+ALTER TABLE [dbo].[Cuenta]  WITH CHECK ADD  CONSTRAINT [fkTipempresaCuenta] FOREIGN KEY([CueIdEmpresa])
+REFERENCES [dbo].[empresa] ([Id])
+GO
+ALTER TABLE [dbo].[Cuenta] CHECK CONSTRAINT [fkTipempresaCuenta]
+GO
+ALTER TABLE [dbo].[Cuenta]  WITH CHECK ADD  CONSTRAINT [fkTipoMonedaCuenta] FOREIGN KEY([MonedaId])
+REFERENCES [dbo].[TipoMoneda] ([Id])
+GO
+ALTER TABLE [dbo].[Cuenta] CHECK CONSTRAINT [fkTipoMonedaCuenta]
+GO
+ALTER TABLE [dbo].[HistoricoMoneda]  WITH CHECK ADD  CONSTRAINT [fkHistoricoMonedaempresa] FOREIGN KEY([HistMonEmpresa])
+REFERENCES [dbo].[empresa] ([Id])
+GO
+ALTER TABLE [dbo].[HistoricoMoneda] CHECK CONSTRAINT [fkHistoricoMonedaempresa]
+GO
+ALTER TABLE [dbo].[HistoricoMoneda]  WITH CHECK ADD  CONSTRAINT [fkHistoricoMonedaPartida] FOREIGN KEY([HistMon])
+REFERENCES [dbo].[TipoMoneda] ([Id])
+GO
+ALTER TABLE [dbo].[HistoricoMoneda] CHECK CONSTRAINT [fkHistoricoMonedaPartida]
+GO
+ALTER TABLE [dbo].[Libro]  WITH CHECK ADD  CONSTRAINT [fklibidempempresa] FOREIGN KEY([libidemp])
+REFERENCES [dbo].[empresa] ([Id])
+GO
+ALTER TABLE [dbo].[Libro] CHECK CONSTRAINT [fklibidempempresa]
+GO
+ALTER TABLE [dbo].[Partida]  WITH CHECK ADD FOREIGN KEY([CuentaPar])
+REFERENCES [dbo].[Cuenta] ([Id])
+GO
+ALTER TABLE [dbo].[Partida]  WITH CHECK ADD  CONSTRAINT [fkParPeriodoContableid] FOREIGN KEY([ParPerId])
+REFERENCES [dbo].[PeriodoContable] ([id])
+GO
+ALTER TABLE [dbo].[Partida] CHECK CONSTRAINT [fkParPeriodoContableid]
+GO
+ALTER TABLE [dbo].[Partida]  WITH CHECK ADD  CONSTRAINT [fkPartidaCuenta] FOREIGN KEY([ParIdEmpresa])
+REFERENCES [dbo].[empresa] ([Id])
+GO
+ALTER TABLE [dbo].[Partida] CHECK CONSTRAINT [fkPartidaCuenta]
+GO
+ALTER TABLE [dbo].[Partida]  WITH CHECK ADD  CONSTRAINT [fkPartidaempresa] FOREIGN KEY([ParIdEmpresa])
+REFERENCES [dbo].[empresa] ([Id])
+GO
+ALTER TABLE [dbo].[Partida] CHECK CONSTRAINT [fkPartidaempresa]
+GO
+ALTER TABLE [dbo].[Partida]  WITH CHECK ADD  CONSTRAINT [fkPartidaLibro] FOREIGN KEY([ParIdLibro])
+REFERENCES [dbo].[Libro] ([Id])
+GO
+ALTER TABLE [dbo].[Partida] CHECK CONSTRAINT [fkPartidaLibro]
+GO
+ALTER TABLE [dbo].[partidasubcuenta]  WITH CHECK ADD FOREIGN KEY([parsubcueid])
+REFERENCES [dbo].[subcuenta] ([id])
+GO
+ALTER TABLE [dbo].[partidasubcuenta]  WITH CHECK ADD FOREIGN KEY([parsubcueidpart])
+REFERENCES [dbo].[Partida] ([Id])
+GO
+ALTER TABLE [dbo].[partidasubcuenta]  WITH CHECK ADD FOREIGN KEY([SubCueIdEmpresa])
+REFERENCES [dbo].[empresa] ([Id])
+GO
+ALTER TABLE [dbo].[PeriodoContable]  WITH CHECK ADD FOREIGN KEY([idperempresa])
+REFERENCES [dbo].[empresa] ([Id])
+GO
+ALTER TABLE [dbo].[PeriodoContable]  WITH CHECK ADD FOREIGN KEY([perfiscalid])
+REFERENCES [dbo].[periodofiscal] ([id])
+GO
+ALTER TABLE [dbo].[PeriodoSaldoHis]  WITH CHECK ADD FOREIGN KEY([PerId])
+REFERENCES [dbo].[PeriodoContable] ([id])
+GO
+ALTER TABLE [dbo].[PeriodoSaldoHis]  WITH CHECK ADD  CONSTRAINT [fkperCueidhist] FOREIGN KEY([perCueid])
+REFERENCES [dbo].[Cuenta] ([Id])
+GO
+ALTER TABLE [dbo].[PeriodoSaldoHis] CHECK CONSTRAINT [fkperCueidhist]
+GO
+ALTER TABLE [dbo].[PeriodoSaldoHis]  WITH CHECK ADD  CONSTRAINT [fkpersalempresa] FOREIGN KEY([persalempresa])
+REFERENCES [dbo].[empresa] ([Id])
+GO
+ALTER TABLE [dbo].[PeriodoSaldoHis] CHECK CONSTRAINT [fkpersalempresa]
+GO
+ALTER TABLE [dbo].[proveedores]  WITH CHECK ADD FOREIGN KEY([subcueidpro])
+REFERENCES [dbo].[subcuenta] ([id])
+GO
+ALTER TABLE [dbo].[proveedores]  WITH CHECK ADD  CONSTRAINT [fkProIdEmpresa] FOREIGN KEY([ProIdEmpresa])
+REFERENCES [dbo].[empresa] ([Id])
+GO
+ALTER TABLE [dbo].[proveedores] CHECK CONSTRAINT [fkProIdEmpresa]
+GO
+ALTER TABLE [dbo].[proveedores]  WITH CHECK ADD  CONSTRAINT [fkProtipMon] FOREIGN KEY([ProtipMon])
+REFERENCES [dbo].[TipoMoneda] ([Id])
+GO
+ALTER TABLE [dbo].[proveedores] CHECK CONSTRAINT [fkProtipMon]
+GO
+ALTER TABLE [dbo].[rol]  WITH CHECK ADD  CONSTRAINT [fkroldEmpresa] FOREIGN KEY([roldEmpresa])
+REFERENCES [dbo].[empresa] ([Id])
+GO
+ALTER TABLE [dbo].[rol] CHECK CONSTRAINT [fkroldEmpresa]
+GO
+ALTER TABLE [dbo].[rolesopciones]  WITH CHECK ADD  CONSTRAINT [fkrolopcionesIdOpcion] FOREIGN KEY([IdOpcion])
+REFERENCES [dbo].[Opciones] ([Id])
+GO
+ALTER TABLE [dbo].[rolesopciones] CHECK CONSTRAINT [fkrolopcionesIdOpcion]
+GO
+ALTER TABLE [dbo].[rolesopciones]  WITH CHECK ADD  CONSTRAINT [fkrolopcionesidrol] FOREIGN KEY([idrol])
+REFERENCES [dbo].[rol] ([rolid])
+GO
+ALTER TABLE [dbo].[rolesopciones] CHECK CONSTRAINT [fkrolopcionesidrol]
+GO
+ALTER TABLE [dbo].[subcuenta]  WITH CHECK ADD FOREIGN KEY([CuentaId])
+REFERENCES [dbo].[Cuenta] ([Id])
+GO
+ALTER TABLE [dbo].[subcuenta]  WITH CHECK ADD FOREIGN KEY([SubCueIdEmpresa])
+REFERENCES [dbo].[empresa] ([Id])
+GO
+ALTER TABLE [dbo].[TipoMoneda]  WITH CHECK ADD  CONSTRAINT [fkTipempresamon] FOREIGN KEY([MonIdEmpresa])
+REFERENCES [dbo].[empresa] ([Id])
+GO
+ALTER TABLE [dbo].[TipoMoneda] CHECK CONSTRAINT [fkTipempresamon]
+GO
+ALTER TABLE [dbo].[tipoTransacciones]  WITH CHECK ADD FOREIGN KEY([ttraidempresa])
+REFERENCES [dbo].[empresa] ([Id])
+GO
+ALTER TABLE [dbo].[transacciones]  WITH CHECK ADD  CONSTRAINT [fktransaccionesempresa] FOREIGN KEY([TraIdEmpresa])
+REFERENCES [dbo].[empresa] ([Id])
+GO
+ALTER TABLE [dbo].[transacciones] CHECK CONSTRAINT [fktransaccionesempresa]
+GO
+ALTER TABLE [dbo].[transacciones]  WITH CHECK ADD  CONSTRAINT [fktransaccionesPartida] FOREIGN KEY([TraParId])
+REFERENCES [dbo].[Partida] ([Id])
+GO
+ALTER TABLE [dbo].[transacciones] CHECK CONSTRAINT [fktransaccionesPartida]
+GO
+ALTER TABLE [dbo].[usuario]  WITH CHECK ADD  CONSTRAINT [fkusuidempresa] FOREIGN KEY([usuidempresa])
+REFERENCES [dbo].[empresa] ([Id])
+GO
+ALTER TABLE [dbo].[usuario] CHECK CONSTRAINT [fkusuidempresa]
+GO
+ALTER TABLE [dbo].[usuarioroles]  WITH CHECK ADD  CONSTRAINT [fkusuariorolesROlidUsu] FOREIGN KEY([ROlidUsu])
+REFERENCES [dbo].[rol] ([rolid])
+GO
+ALTER TABLE [dbo].[usuarioroles] CHECK CONSTRAINT [fkusuariorolesROlidUsu]
+GO
+ALTER TABLE [dbo].[usuarioroles]  WITH CHECK ADD  CONSTRAINT [fkusuariorolesUsuarioId] FOREIGN KEY([UsuarioId])
+REFERENCES [dbo].[usuario] ([id])
+GO
+ALTER TABLE [dbo].[usuarioroles] CHECK CONSTRAINT [fkusuariorolesUsuarioId]
+GO
+/****** Object:  StoredProcedure [dbo].[addcliente]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create procedure [dbo].[addcliente]
+(
+    @primernombre  [varchar](20) NULL,
+	@segundonombre [varchar](20) NULL,
+	@primerapellido [varchar](29) NULL,
+	@segundoapellido [varchar](29) NULL,
+	@dni [varchar](20) NULL,
+	@usuario [varchar](20) NULL,
+	@clave [varchar](2000) NULL,
+    @preguntaSeguridad [varchar](2000) NULL,
+	@RespuestaSeguridad [varchar](2000) NULL,
+	@telefono [varchar](20) NULL,
+	@sexo [varchar](1) NULL,
+	@idrol [varchar](128) NULL,
+	@usuidempresa int
+)
+as
+begin
+
+insert into usuario  (
+	[primernombre] ,
+	[segundonombre] ,
+	[primerapellido] ,
+	[segundoapellido] ,
+	[estado] ,
+	[fechaIngreso] ,
+	[fechaRetiro] ,
+	[dni] ,
+	[usuario] ,
+	[clave],
+	[preguntaSeguridad] ,
+	[RespuestaSeguridad] ,
+	[telefono],
+	[sexo] ,
+	[idrol] ,
+	[intentos] ,
+	usuidempresa
+	)
+	values
+	(
+	    @primernombre ,
+	@segundonombre ,
+	@primerapellido ,
+	@segundoapellido ,
+	'A',
+	getdate(),
+	null,
+	@dni ,
+	@usuario ,
+	@clave ,
+    @preguntaSeguridad ,
+	@RespuestaSeguridad ,
+	@telefono ,
+	@sexo ,
+	@idrol ,
+	3,
+	@usuidempresa
+
+	)
+
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[addrol]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+	create procedure [dbo].[addrol]
+(
+@descripcion varchar(200),
+@roldEmpresa int
+)
+as
+begin
+insert into rol (descripcion, activo, roldEmpresa)  values (@descripcion, 1, @roldEmpresa )
+
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[balancegeneralrpt]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[balancegeneralrpt]
+(
+@fechaini date, 
+@fechafin date
+)
+as
+begin
+
+
+
+DECLARE @estadocuenta TABLE (
+	cuenta varchar(1000),
+    cargo varchar(1000), --decimal(10,4) 
+	clasificacion varchar(100)
+ --   Abonos decimal(10,4) ,
+ --   saldo decimal(10,4),
+	--cuota int 
+);
+
+
+DECLARE @utilidadneta TABLE (
+	cuenta varchar(1000),
+    cargo varchar(1000) --decimal(10,4) 
+ --   Abonos decimal(10,4) ,
+ --   saldo decimal(10,4),
+	--cuota int 
+);
+
+
+DECLARE @isr TABLE (
+	cuenta varchar(1000),
+    cargo varchar(1000) --decimal(10,4) 
+ --   Abonos decimal(10,4) ,
+ --   saldo decimal(10,4),
+	--cuota int 
+);
+
+DECLare @patrimonioneto decimal(10,0),
+       @utilidadnetares decimal(10,0),
+	   @totlapasivos decimal(10,0),
+	   @totalpatriomonioneto decimal(10,0),
+	   @isrporpagar decimal(10,0)
+
+
+insert into @estadocuenta
+	select 'ACTIVOS', '' , 'NA'
+
+	
+insert into @estadocuenta
+	select  cue.descripcion, case  when sum( par.debe) > sum( par.haber) then cast( sum( par.Debe - par.haber) as varchar) else 
+	cast( sum(par.haber -  par.Debe   ) as varchar)
+	end ,
+	'Activos'
+	from partida par
+	inner join cuenta  cue on cue.id = par.cuentapar
+	inner join clasificacioncuenta cla on cla.id = cue.clasecuentaid
+	where par.activo = 1
+	and cla.tipocuenta = 'Activos'
+	and par.fecha between @fechaini and @fechafin
+	group by cue.descripcion
+
+	
+    insert into @estadocuenta
+	select 'TOTAL ACTIVOS', sum(
+	case
+	  when
+	  ISNUMERIC(cargo) = 1 then 	  cast(cargo as decimal(10,0) ) 
+	  else 0 
+
+	end
+	         )
+	, 'Activos'
+	from @estadocuenta
+
+
+	
+  insert into @isr
+		exec
+estadoResultadosreportes @fechaini, @fechafin
+
+select @isrporpagar = cargo from @isr
+where cuenta = 'Impuesto sobre la renta'
+
+
+	
+insert into @estadocuenta
+	select 'PASIVOS Y PATRIMONIO NETO', '', 'na'
+
+
+		
+insert into @estadocuenta
+	select 'PASIVOS', '' , 'na'
+
+	
+insert into @estadocuenta
+		select  cue.descripcion, case  when sum( par.debe) > sum( par.haber) then cast( sum( par.Debe - par.haber) as varchar) else 
+	cast( sum(par.haber -  par.Debe   ) as varchar)
+	end ,
+	'PASIVOS'
+	from partida par
+	inner join cuenta  cue on cue.id = par.cuentapar
+	inner join clasificacioncuenta cla on cla.id = cue.clasecuentaid
+	where par.activo = 1
+	and cla.tipocuenta = 'Pasivos'
+	and par.fecha between @fechaini and @fechafin
+	group by cue.descripcion
+	
+	
+	
+--	select @isrporpagar
+
+insert into @estadocuenta
+	select cue.descripcion , @isrporpagar ,'PASIVOS'
+	from cuenta cue
+	inner join clasificacioncuenta cla on cla.id = cue.clasecuentaid
+	and cla.tipocuenta = 'Pasivos'
+	and cue.descripcion = 'ISR por Pagar'
+
+
+	  insert into @estadocuenta
+	select 'TOTAL PASIVOS', sum(
+	case
+	  when
+	  ISNUMERIC(cargo) = 1 then 	  cast(cargo as decimal(10,0) ) 
+	  else 0 
+
+	end
+	         )
+	, 'totalPASIVOS'
+	from @estadocuenta
+	where clasificacion = 'PASIVOS'
+
+	
+	
+	  insert into @estadocuenta
+	select 'PATRIMONIO NETO', '', 'NA'
+
+	insert into @estadocuenta
+		select  cue.descripcion, case  when sum( par.debe) > sum( par.haber) then cast( sum( par.Debe - par.haber) as varchar) else 
+	cast( sum(par.haber -  par.Debe   ) as varchar)
+	end ,
+	'PATRIMONIO'
+	from partida par
+	inner join cuenta  cue on cue.id = par.cuentapar
+	inner join clasificacioncuenta cla on cla.id = cue.clasecuentaid
+	where par.activo = 1
+	and cla.tipocuenta = 'PATRIMONIO'
+	and par.fecha between @fechaini and @fechafin
+	group by cue.descripcion
+
+
+	insert into @utilidadneta
+		exec
+estadoResultadosreportes @fechaini, @fechafin
+
+
+  --select * from @utilidadneta
+
+
+
+
+	insert into @estadocuenta
+	select CUENTA, cargo , 'UtilidadNeta' from @utilidadneta
+	WHERE cuenta = 'Utilidad Neta'
+
+	
+	
+	select @patrimonioneto = sum( cast( cargo as decimal(10,0) ) ) from @estadocuenta
+	where clasificacion = 'PATRIMONIO'
+
+	
+	select @utilidadnetares = cargo from @estadocuenta
+	where clasificacion = 'UtilidadNeta'
+
+	select @totlapasivos = cargo from @estadocuenta
+	where clasificacion = 'totalPASIVOS'
+
+	
+	select @totlapasivos = cargo from @estadocuenta
+	where clasificacion = 'TOTALPATRIMONIONETO'
+
+	
+	insert into @estadocuenta
+	select 'TOTAL PATRIMONIO NETO', @patrimonioneto + @utilidadnetares, 'TOTALPATRIMONIONETO'
+
+	--select @totlapasivos + @patrimonioneto + @utilidadnetares
+
+		insert into @estadocuenta
+	select 'TOTAL DE PASIVO Y PATRIMONIO NETO', @totlapasivos + @patrimonioneto + @utilidadnetares, 'TOTALPASIVOPATRIMONIONETO'
+
+
+
+	select cuenta , cargo  from @estadocuenta
+
+	
+
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[calculahistoricoperiodo]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[calculahistoricoperiodo]
+(
+@ParIdEmpresa int ,
+@fechaini date, 
+@fechafin date,
+@periodo int
+)
+as
+begin
+
+
+insert into periodosaldohis
+(
+PerId,	perCueid,
+valorcuenta,	persalempresa
+
+)
+
+select @periodo , cuentapar , /*cue.descripcion,*/
+case when clascue.naturaleza = 'Credito'  then ( sum( haber)  - sum( debe) )
+else
+( sum( debe) - sum( haber) ) end  totalcuenta , 3
+from partida par
+inner join cuenta cue on cue.id = par.cuentapar
+inner join clasificacioncuenta  clascue on clascue.id = cue.clasecuentaid
+where par.activo = 1
+and par.ParIdEmpresa = @ParIdEmpresa
+and fecha between  @fechaini and @fechafin
+group by cuentapar ,cue.descripcion, clascue.naturaleza 
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[ClienteAdd]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[ClienteAdd]
+(
+
+@Nombre varchar(1000),
+@Apellido varchar(1000),
+@Direccion varchar(1000),
+@email varchar(100),
+@FechaIngreso date, 
+@Telefono varchar(100),
+@CliIdEmpresa int ,
+@Abono decimal(10,4),
+@segundoNombre varchar(100),
+@segundoApellido  varchar(100),
+@CliTipMonid int,
+@subcueidcli int,
+@NombreCia varchar(1000),
+@RTN varchar(1000),
+@usuariocreacion varchar(100)
+)
+as
+
+begin
+
+insert into Cliente
+(
+Nombre ,
+Apellido ,
+Direccion ,
+email ,
+Activo ,
+FechaIngreso , 
+Telefono ,
+CliIdEmpresa  ,
+Abono ,
+segundoNombre ,
+segundoApellido  ,
+CliTipMonid,
+subcueidcli,
+NombreCia ,
+RTN ,
+usuariocreacion ,
+fechamodificacion ,
+usuariomodifico ,
+fechacreacion 
+)
+values
+(
+@Nombre ,
+@Apellido ,
+@Direccion ,
+@email ,
+1 ,
+@FechaIngreso , 
+@Telefono ,
+@CliIdEmpresa  ,
+@Abono ,
+@segundoNombre ,
+@segundoApellido  ,
+@CliTipMonid,
+@subcueidcli,
+@NombreCia,
+@RTN,
+@usuariocreacion,
+null,
+null,
+getdate()
+
+)
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[ClienteDelete]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create procedure [dbo].[ClienteDelete]
+(
+@id bigint
+)
+as
+begin
+ update cliente
+ set activo = 0 
+ where Id =  @id
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[clienteedit]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE procedure [dbo].[clienteedit]
+(
+@id bigint ,
+@Nombre varchar(1000),
+@Apellido varchar(1000),
+@Direccion varchar(1000),
+@email varchar(100),
+@FechaIngreso date, 
+@Telefono varchar(100),
+@CliIdEmpresa int ,
+@Abono decimal(10,4),
+@segundoNombre varchar(100),
+@segundoApellido  varchar(100),
+@CliTipMonid int,
+@subcueidcli int,
+@NombreCia varchar(1000),
+@RTN varchar(1000),
+@usuariocreacion varchar(100)
+)
+as
+begin
+
+update cliente 
+set
+Nombre =  @Nombre,
+Apellido = @Apellido,
+Direccion = @Direccion,
+email = @email,
+FechaIngreso = @FechaIngreso , 
+Telefono = @Telefono,
+CliIdEmpresa = @CliIdEmpresa  ,
+Abono = @Abono,
+segundoNombre = @segundoNombre,
+segundoApellido = @segundoApellido,
+CliTipMonid =  @CliTipMonid,
+subcueidcli = @subcueidcli,
+NombreCia = @NombreCia ,
+RTN = @RTN ,
+ fechamodificacion = getdate() ,
+usuariomodifico = @usuariocreacion
+where Id = @id
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[clientepagacuenta]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+create procedure [dbo].[clientepagacuenta]
+(
+@subcueidcli int, 
+@abono decimal(10,4)
+)
+as
+begin
+update cliente
+set
+abono =  abono - @abono
+where 
+subcueidcli= @subcueidcli
+end
+
+GO
+/****** Object:  StoredProcedure [dbo].[clienteSho]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[clienteSho]
+as
+begin
+ select 
+ cli.Id,	Nombre,	Apellido,
+ Direccion,	email,	Activo,	 convert(date, FechaIngreso) as FechaIngreso,
+ Telefono,	CliIdEmpresa,	Abono,	mon.Moneda as moneda,
+ segundoNombre,	segundoApellido, cli.CliTipMonid as monid,
+ subcue.Cuentacontablesub as subcuentanum, subcue.Descripcion as subcuenta,
+ cli.rtn , cli.NombreCia 
+ from cliente cli
+ inner join (
+ select 
+ Id,		Moneda	
+
+ from tipoMoneda
+
+ ) mon on mon.id = cli.CliTipMonid
+ left join (
+  select id	,Cuentacontablesub,	Descripcion from subcuenta
+  where activo = 1 
+ ) subcue on  subcue.id = cli.subcueidcli
+ where activo = 1
+
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[clientesubcueshow]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create procedure [dbo].[clientesubcueshow]
+(
+@id int
+)
+as
+begin
+select subcueidcli from cliente
+where id = @id
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[CorrelativoShow]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create procedure [dbo].[CorrelativoShow]
+as
+
+begin
+
+select Asiento  from Correlativo
+where Descripcion = 'Asiento' 
+
+end 
+GO
+/****** Object:  StoredProcedure [dbo].[correlativoupdate]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+create procedure [dbo].[correlativoupdate]
+(
+@Descripcion  varchar(1000)
+)
+as
+begin
+
+ declare @valor int 
+
+select  top 1
+-- delete
+  @valor  = asiento
+from  Partida
+order by FechaCreacion desc
+
+
+
+update Correlativo
+set  Asiento =   @valor + 1 
+where Descripcion = @Descripcion
+
+
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[cuentaAdd]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE procedure [dbo].[cuentaAdd]
+(
+@CuentaContable varchar(100),
+@Descripcion varchar (100),
+@ClaseCuentaId int ,
+@CuentaTipo varchar (10), 
+@MonedaId  int,
+@CueIdEmpresa int
+)
+as 
+begin
+
+insert into Cuenta ( CuentaContable , Descripcion , ClaseCuentaId, CuentaTipo,MonedaId ,CueIdEmpresa,Activo, cargacuenta   )
+values ( 
+@CuentaContable , @Descripcion , @ClaseCuentaId, @CuentaTipo, @MonedaId ,@CueIdEmpresa ,1, 0 
+
+)
+
+end
+
+GO
+/****** Object:  StoredProcedure [dbo].[cuentaClasificacion]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create procedure [dbo].[cuentaClasificacion](
+@cuentaid int 
+)
+as
+begin
+
+declare @clasecuentaid int 
+declare @naturalezacuenta varchar(10)
+
+
+
+select @clasecuentaid =  ClaseCuentaId from cuenta 
+where id = @cuentaid
+
+select @naturalezacuenta = Naturaleza from ClasificacionCuenta
+where id = @clasecuentaid
+
+ select @naturalezacuenta
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[delcuenta]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create procedure [dbo].[delcuenta]
+(
+@id int
+)
+as
+begin
+ delete from Cuenta
+ where id = @id
+
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[deleterol]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+	create procedure [dbo].[deleterol]
+(
+@rolid varchar(128)
+
+)
+as
+begin
+
+update rol 
+set activo = 0
+where rolid = @rolid
+end
+GO
+/****** Object:  StoredProcedure [dbo].[estadocuentaproveedores]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[estadocuentaproveedores]
+(
+@ind int,
+@idproveedor int
+)
+as
+begin
+
+if @ind = 1
+begin
+
+select  max(pro.id) as codigo , pro.nombrecia , pro.deuda as cargo , ( sum(debe) - sum(haber) ) as Abonos   ,
+  (pro.deuda  -  ( sum(debe) - sum(haber) ) )  as saldo  
+  -- 0 As cuota
+
+from partida par
+inner join partidasubcuenta sub on par.id = sub.parsubcueid and sub.activo = 1
+inner join proveedores pro on  sub.parsubcueid = pro.subcueidpro  and pro.Activo = 1
+where par.activo = 1 
+group by pro.nombrecia , pro.deuda
+
+end
+else
+begin
+
+DECLARE @proveedor TABLE (
+    codigo INT NOT NULL,
+	nombrecia varchar(1000),
+    cargo decimal(10,4) ,
+    Abonos decimal(10,4) ,
+    saldo decimal(10,4),
+	cuota int 
+);
+
+insert into @proveedor
+select top 1  pro.id as codigo , pro.nombrecia , pro.deuda as cargo , ( 0 ) as Abonos   ,
+   pro.deuda as saldo , 0 as cuota
+
+from partida par
+inner join partidasubcuenta sub on par.id = sub.parsubcueid and sub.activo = 1
+inner join proveedores pro on  sub.parsubcueid = pro.subcueidpro  and pro.Activo = 1
+where par.activo = 1 
+and pro.Id = @idproveedor
+
+
+
+insert into @proveedor
+select  pro.id as codigo , pro.nombrecia , pro.deuda as cargo , ( debe - haber ) as Abonos   ,
+  (pro.deuda  -  ( debe - haber ) )  as saldo	,
+  ROW_NUMBER() OVER (ORDER BY pro.id) AS cuota
+from partida par
+inner join partidasubcuenta sub on par.id = sub.parsubcueid and sub.activo = 1
+inner join proveedores pro on  sub.parsubcueid = pro.subcueidpro  and pro.Activo = 1
+where par.activo = 1 
+and pro.Id = @idproveedor
+
+
+
+insert into @proveedor
+select  max(pro.id) as codigo , 'Totales' as nombrecia , pro.deuda as cargo , ( sum(debe) - sum(haber) ) as Abonos   ,
+  (pro.deuda  -  ( sum(debe) - sum(haber) ) )  as saldo , count(*) cuota
+
+from partida par
+inner join partidasubcuenta sub on par.id = sub.parsubcueid and sub.activo = 1
+inner join proveedores pro on  sub.parsubcueid = pro.subcueidpro  and pro.Activo = 1
+where par.activo = 1 
+and pro.Id = @idproveedor
+
+group by pro.nombrecia , pro.deuda
+
+select codigo, nombrecia, cargo, Abonos, saldo , cuota from @proveedor
+
+
+end
+
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[estadoResultadosreportes]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[estadoResultadosreportes]
+(
+@fechaini date, 
+@fechafin date
+)
+as
+begin
+
+
+declare @totalingreso decimal(10,0) ,
+  @totalcostoventa decimal(10,0) ,
+   @totalgastos decimal(10,0) ,
+   @utilidadBruta decimal(10,0),
+   @utilidadantesimpuesto decimal(10,0),
+   @impuestosobrerenta decimal(10,0)
+
+DECLARE @estadocuenta TABLE (
+	cuenta varchar(1000),
+    cargo varchar(1000) --decimal(10,4) 
+ --   Abonos decimal(10,4) ,
+ --   saldo decimal(10,4),
+	--cuota int 
+);
+
+insert into @estadocuenta
+	select 'Ingresos: ', ''
+
+	
+insert into @estadocuenta
+	select cue.descripcion, cast( sum( par.haber) as varchar)  from partida par
+	inner join cuenta  cue on cue.id = par.cuentapar
+	inner join clasificacioncuenta cla on cla.id = cue.clasecuentaid
+	where par.activo = 1
+	and cla.tipocuenta = 'Ingresos'
+	and par.fecha between @fechaini and @fechafin
+	group by cue.descripcion
+
+
+	
+insert into @estadocuenta
+	select 'Total ingreso', cast( sum( par.haber) as varchar)   from partida par
+	inner join cuenta  cue on cue.id = par.cuentapar
+	inner join clasificacioncuenta cla on cla.id = cue.clasecuentaid
+	where par.activo = 1
+	and cla.tipocuenta = 'Ingresos'
+	and par.fecha between @fechaini and @fechafin
+	--group by cue.descripcion
+
+
+	
+insert into @estadocuenta
+	select 'Costo de ventas',  cast( sum (debe) as varchar)  from partida par
+	inner join cuenta  cue on cue.id = par.cuentapar
+	inner join clasificacioncuenta cla on cla.id = cue.clasecuentaid and cue.descripcion like 'Costos%'
+	where par.activo = 1
+	and cla.tipocuenta = 'Gastos'
+	and par.fecha between @fechaini and @fechafin
+
+
+	
+	select @totalcostoventa = cast( cargo as decimal(10,4) ) from  @estadocuenta
+	where 
+	cuenta = 'Costo de ventas'
+
+	select @totalingreso = cast( cargo  as decimal(10,4) ) from  @estadocuenta
+	where 
+	cuenta = 'Total ingreso'
+
+	
+insert into @estadocuenta
+	select 'utilidad Bruta' , cast( @totalingreso -  @totalcostoventa  as varchar)
+
+	
+insert into @estadocuenta
+	select 'Gastos: ', ''
+
+	insert into @estadocuenta
+	select cue.descripcion ,  cast( sum (debe) as varchar)   from partida par
+	inner join cuenta  cue on cue.id = par.cuentapar
+	inner join clasificacioncuenta cla on cla.id = cue.clasecuentaid and not  cue.descripcion like 'Costos%'
+	where par.activo = 1
+	and cla.tipocuenta = 'Gastos'
+	and par.fecha between @fechaini and @fechafin
+	group by cue.descripcion
+
+		insert into @estadocuenta
+	select 'Total Gastos', cast( sum (debe) as varchar)  from partida par
+	inner join cuenta  cue on cue.id = par.cuentapar
+	inner join clasificacioncuenta cla on cla.id = cue.clasecuentaid and not  cue.descripcion like 'Costos%'
+	where par.activo = 1
+	and cla.tipocuenta = 'Gastos'
+	and par.fecha between @fechaini and @fechafin
+	
+	
+	select @totalgastos =  cast (cargo as decimal(10,4) )  from  @estadocuenta
+	where 
+	cuenta = 'Total Gastos'
+
+	
+	select @utilidadBruta = cast( cargo as decimal(10,4) )  from  @estadocuenta
+	where 
+	cuenta = 'utilidad Bruta'
+
+	
+insert into @estadocuenta
+	select 'utilidad de operacion' , cast( @utilidadBruta - @totalgastos  as varchar)
+
+	
+insert into @estadocuenta
+	select 'utilidad antes de impuesto' , cast( @utilidadBruta - @totalgastos as varchar)
+
+	select @utilidadantesimpuesto = cast( cargo as decimal(10,4) )  from  @estadocuenta
+	where 
+	cuenta = 'utilidad antes de impuesto'
+
+	set @impuestosobrerenta = @utilidadantesimpuesto * 0.25 -- porcentaje del impuesto sobre la renta
+
+		
+insert into @estadocuenta
+	select 'Impuesto sobre la renta' ,cast (@impuestosobrerenta as varchar)
+
+	
+insert into @estadocuenta
+	select 'Utilidad Neta' , cast( @utilidadantesimpuesto -@impuestosobrerenta as varchar)
+
+
+	select * from  @estadocuenta
+
+
+
+
+end
+
+GO
+/****** Object:  StoredProcedure [dbo].[getclaveencriptada]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create procedure [dbo].[getclaveencriptada]
+(
+@usuario varchar(20)
+)
+as
+begin
+select  clave  from usuario 
+where usuario = @usuario
+
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[getidcliente]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[getidcliente](
+@usuario varchar(20)
+)
+as
+begin
+ select  cast(id as varchar) as id from usuario 
+ where usuario =@usuario
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[getrolusuario]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[getrolusuario]
+(
+@usuario varchar(20),
+@clave varchar(200)
+)
+as
+
+ declare @idrol varchar(128)
+
+begin
+select  @idrol= cast( idrol as varchar )   from usuario 
+where usuario = @usuario
+and clave = @clave
+
+select descripcion from rol
+where rolid = @idrol
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[HistoricoMonedaadd]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create procedure [dbo].[HistoricoMonedaadd]
+(
+@HistMon int ,
+@Fecha date ,
+@Valor decimal(10, 4),
+@HistMonEmpresa int,
+ @usuariocreacion varchar(100)
+)
+as
+begin
+
+insert into HistoricoMoneda
+(
+HistMon,
+Fecha,
+Valor,
+Activo,
+HistMonEmpresa,
+usuariocreacion,
+fechamodificacion,
+usuariomodifico,
+fechacreacion
+)
+values
+(
+@HistMon,
+@Fecha,
+@Valor,
+1,
+@HistMonEmpresa,
+@usuariocreacion,
+null, 
+null, 
+getdate()
+
+
+
+
+)
+
+
+end
+
+GO
+/****** Object:  StoredProcedure [dbo].[HistoricoMonedaconversion]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[HistoricoMonedaconversion]
+(
+
+@idcuenta int ,
+@fecha date,
+@estado varchar(20)
+)
+as
+begin
+
+
+declare @monedaid int = 0 
+
+--if @estado = 'pagacliente'
+--begin
+
+--select  @idcuenta  = cue.Id  from cliente cli
+--inner join subcuenta sub on cli.subcueidcli = sub.id 
+--inner join Cuenta cue on cue.Id = sub.CuentaId
+--where cli.id = @idcuenta
+
+----select @idcuenta
+
+--end
+
+
+
+--if @estado = 'pagaproveedor'
+--begin
+
+--select  @idcuenta  = cue.Id  from proveedores cli
+--inner join subcuenta sub on cli.subcueidpro = sub.id 
+--inner join Cuenta cue on cue.Id = sub.CuentaId
+--where cli.id = @idcuenta
+
+----select @idcuenta
+
+--end
+
+
+
+select  @monedaid =MonedaId from Cuenta
+where id =  @idcuenta
+
+
+ declare @cambio decimal(10,4) = 1.00
+
+select @cambio = valor from HistoricoMoneda
+where histmon = @monedaid and fecha = @fecha
+
+select @cambio
+
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[HistoricoMonedadel]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create procedure [dbo].[HistoricoMonedadel]
+(
+@Id int ,
+ @usuariocreacion varchar(100)
+)
+as
+
+begin
+update HistoricoMoneda
+set activo = 0,
+usuariomodifico  = @usuariocreacion,
+fechamodificacion = GETDATE()
+where Id = @Id
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[HistoricoMonedashow]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure  [dbo].[HistoricoMonedashow]
+as
+begin
+
+select 
+ histmon.Id, tipmon.Descripcion as moneda,	HistMon ,	Fecha,	Valor,	histmon.Activo,	HistMonEmpresa
+from HistoricoMoneda histmon
+inner join TipoMoneda tipmon on tipmon.Id = histmon.HistMon
+where histmon.Activo = 1
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[inactivarcliente]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create procedure [dbo].[inactivarcliente]
+(
+@id varchar(128)
+)
+as
+begin
+update 
+usuario
+set estado = 'R',
+fechaRetiro = getdate()
+where  id = @id
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[libroshow]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE procedure [dbo].[libroshow] 
+as
+begin 
+
+select Id,	Descripcion,	Activo,	libidemp
+from Libro
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[logueo]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create procedure [dbo].[logueo]
+(
+@usuario varchar(20),
+@clave varchar(200)
+)
+as
+begin
+
+
+ declare @reg int =0
+
+select  @reg = count(*)  from usuario 
+where usuario = @usuario
+and clave = @clave
+
+if @reg > 0
+ begin
+  select CAST(1 AS bit);
+  end
+  else
+ begin
+   select CAST(0 AS bit);
+  end
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[MenuPadreShow]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[MenuPadreShow](
+@usuario varchar(100),
+@nivel varchar(100)
+)
+as
+begin
+
+select opc.Id, opc.Nombre, opc.rutafrm , opc.icono from  usuario usu
+inner join usuarioroles usurol on usurol.UsuarioId = usu.id and usurol.Activo = 1
+inner join  rolesopciones rolopc on rolopc.idrol = usurol.ROlidUsu and rolopc.Activo =1
+inner join Opciones opc on opc.Id = rolopc.IdOpcion and opc.Activo = 1 
+where usuario = @usuario
+
+
+and nivel = @nivel
+end
+GO
+/****** Object:  StoredProcedure [dbo].[movimientodiariopartidas]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[movimientodiariopartidas]
+(
+@Fecha date ,
+@Fechafin date 
+)
+as
+begin
+
+
+ select par.id , asiento, CuentaPar, par.fecha as fechapartida, cue.cuentacontable, cue.descripcion, debe , haber, Referencia, lib.descripcion as libro ,
+   isnull( periodo.tippagcueid, '') as tippagcueid, isnull( periodo.fechaini, '') as fechaini, isnull( periodo.fechafin, '') as fechafin
+ from Partida par
+ inner join Libro lib on lib.Id = par.paridlibro
+ inner join cuenta cue on cue.id = par.cuentapar
+ left join  periodocontable periodo on periodo.id = par.ParPerId
+
+
+ where par.fecha between  @Fecha and @Fechafin
+
+end
+
+GO
+/****** Object:  StoredProcedure [dbo].[movimientoscuentapartida]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[movimientoscuentapartida] 
+( 
+@id int  
+) 
+as
+begin 
+
+
+ select par.id , asiento, CuentaPar, par.fecha as fechapartida, cue.cuentacontable, cue.descripcion, debe , haber, Referencia, lib.descripcion as libro ,
+   isnull( periodo.tippagcueid, '') as tippagcueid, isnull( periodo.fechaini, '') as fechaini, isnull( periodo.fechafin, '') as fechafin
+ from Partida par
+ inner join Libro lib on lib.Id = par.paridlibro
+ inner join cuenta cue on cue.id = par.cuentapar
+ left join  periodocontable periodo on periodo.id = par.ParPerId
+
+ where par.CuentaPar = @id
+
+end
+
+GO
+/****** Object:  StoredProcedure [dbo].[opcionesevento]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE procedure [dbo].[opcionesevento]
+(
+@ind int ,
+@id int ,
+@Nombre varchar(1000),
+@Nivel varchar(100) ,
+@icono varchar(1000),
+@rutafrm varchar(100),
+@OpcionPadre int
+)
+as
+begin
+
+if @ind = 1 
+begin
+
+insert into opciones
+(
+Nombre,	Nivel,
+icono, rutafrm,
+Activo,	OpcionPadre
+
+)
+values
+(
+@Nombre , @Nivel,
+@icono, @rutafrm,
+1, @OpcionPadre
+)
+end
+
+else if @ind = 2 
+begin
+ update opciones
+ set Activo = 0 
+ where Id = @id
+
+end
+
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[opcionesshow]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[opcionesshow]
+as
+begin
+
+select
+Id,	Nombre,
+Nivel	,icono,
+rutafrm	, Activo,	OpcionPadre
+from
+opciones
+where Activo = 1 
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[partidaadd]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[partidaadd](
+
+@Asiento int,
+@Fecha date,
+@CuentaPar int,
+@Parcial int,
+@Debe int,
+@Haber int,
+@Referencia varchar(2000),
+@ParIdEmpresa int,
+@ParIdLibro int,
+@UsuarioCreacion varchar(100),
+@TipoTransaccion varchar(100),
+@estado varchar(100),
+@subcueid int
+
+
+)
+as
+begin
+declare @idpartida int 
+declare @idperiodo int
+declare @cantidad int 
+
+
+select @idperiodo = id from PeriodoContable
+where @Fecha  between
+ fechaini and 	fechafin
+ and estado = 'Generado'
+ and activo = 1 
+
+
+
+insert into  Partida
+(
+
+Asiento ,
+Fecha ,
+CuentaPar ,
+Parcial ,
+Debe ,
+Haber ,
+FechaCreacion ,
+Activo ,
+Referencia ,
+ParIdEmpresa , 
+ParIdLibro ,
+ParPerId
+
+)
+values (
+@Asiento,
+@Fecha , 
+@CuentaPar,
+0,
+@Debe,
+@Haber,
+GETDATE(),
+1,
+@Referencia,
+@ParIdEmpresa,
+@ParIdLibro,
+@idperiodo
+)
+
+
+SELECT  @idpartida = SCOPE_IDENTITY() 
+
+if @estado = 'partcliente'
+begin
+exec
+ partidasubcuentaadd
+@parsubcueid = @subcueid  ,
+@parsubcueidpart = @idpartida   ,
+@SubCueIdEmpresa = @ParIdEmpresa
+
+
+exec
+clientepagacuenta
+@subcueidcli = @subcueid , 
+@abono = @Haber
+
+end
+
+
+
+if @estado = 'partproveedor'
+begin
+exec
+ partidasubcuentaadd
+@parsubcueid = @subcueid  ,
+@parsubcueidpart = @idpartida   ,
+@SubCueIdEmpresa = @ParIdEmpresa
+
+
+exec
+proveedorespagacuenta
+@subcueidcli = @subcueid , 
+@abono = @Debe
+
+end
+
+
+exec TransaccionAdd
+@TraParId = @idpartida , 
+@TipoTransaccion = @TipoTransaccion,
+@TraIdEmpresa = @ParIdEmpresa  ,
+@UsuarioCreacion = @UsuarioCreacion
+
+
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[partidasubcuentaadd]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE procedure [dbo].[partidasubcuentaadd]
+(
+@parsubcueid int ,
+@parsubcueidpart int  ,
+@SubCueIdEmpresa int
+
+
+)
+as
+begin
+insert into partidasubcuenta
+(
+parsubcueid  ,
+parsubcueidpart   ,
+Activo  ,
+SubCueIdEmpresa 
+
+)
+values
+(
+@parsubcueid,
+@parsubcueidpart,
+1,
+@SubCueIdEmpresa
+
+)
+
+
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[periodocierre]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure  [dbo].[periodocierre]
+@id int ,
+@usuariocreacion varchar(100)
+
+as
+begin
+
+declare @fechaini  date ,
+ @fechafin  date
+
+
+
+
+
+update PeriodoContable
+set 
+estado = 'cerrado',
+usuariomodifica = @usuariocreacion ,
+fechamodificacion = GETDATE()
+where id = @id
+
+
+select  @fechaini = fechaini, @fechafin=	fechafin from  PeriodoContable
+where id = @id
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[PeriodoContableadd]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE procedure [dbo].[PeriodoContableadd]
+(
+
+@fechaini datetime ,
+@fechafin datetime,
+@fechapago datetime ,
+@fechacorte datetime ,
+@frecuencia varchar(20), 
+
+@estado varchar(1000),
+@idperempresa int ,
+@usuariocreacion varchar(100)
+
+)
+as
+
+begin
+
+declare @tippagcueid varchar(20) ,
+@mes int,
+@Aniocontable int  ,
+@semana int ,
+@idperiodofiscal int 
+
+
+DECLARE @Fecha date 
+set @Fecha = @fechaini -- Establece la fecha que deseas evaluar
+
+DECLARE @PrimerDia AS DATE = DATEADD(DAY, 1, EOMONTH(@Fecha, -1)); -- Primer día del mes actual
+DECLARE @MitadDelMes AS DATE = DATEADD(DAY, 14, @PrimerDia); -- Día que marca la mitad del mes
+
+
+if @frecuencia = 'Quincenal'
+begin
+IF @Fecha <= @MitadDelMes
+    set @semana = 1
+ELSE
+   set @semana = 2
+
+end
+
+if @frecuencia = 'Mensual'
+begin
+set @semana =  DATEPART(wk, @fechaini) 
+
+end
+
+
+if @frecuencia = 'Semanal'
+begin
+set @semana = 1
+
+end
+
+
+
+
+set @mes = datepart( MONTH , @fechaini)
+set @Aniocontable = datepart( YEAR , @fechaini)
+set @tippagcueid = concat(@Aniocontable,@mes,@semana)
+
+
+select @idperiodofiscal= id from periodofiscal
+where activo = 1 
+and estado = 'Generado'
+and @fechaini between fechaini and fechafin
+
+insert into PeriodoContable
+(
+
+tippagcueid  ,
+fechaini  ,
+fechafin ,
+fechapago  ,
+fechacorte  ,
+frecuencia , 
+mes ,
+Aniocontable  , 
+estado ,
+idperempresa  ,
+activo  ,
+usuariocreacion ,
+fechacreacion ,
+usuariomodifica ,
+fechamodificacion ,
+perfiscalid
+
+
+)
+values (
+@tippagcueid  ,
+@fechaini  ,
+@fechafin ,
+@fechapago  ,
+@fechacorte  ,
+@semana , 
+@mes ,
+@Aniocontable  , 
+@estado ,
+@idperempresa  ,
+1  ,
+@usuariocreacion ,
+ getdate() ,
+null ,
+null ,
+@idperiodofiscal
+)
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[PeriodoContabledel]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[PeriodoContabledel] 
+(
+@id int ,
+ @usuariocreacion varchar(100)
+)
+as
+begin
+update PeriodoContable
+set activo = 0,
+usuariomodifica = @usuariocreacion,
+fechamodificacion = GETDATE()
+
+where id = @id
+
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[PeriodoContableedit]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE procedure [dbo].[PeriodoContableedit]
+(
+@id int ,
+@fechaini datetime ,
+@fechafin datetime,
+@fechapago datetime ,
+@fechacorte datetime ,
+@frecuencia varchar(20), 
+
+@estado varchar(1000),
+@idperempresa int ,
+@usuariocreacion varchar(100)
+)
+as
+begin
+
+
+declare @tippagcueid varchar(20) ,
+@mes int,
+@Aniocontable int  ,
+@semana int 
+
+DECLARE @Fecha date 
+set @Fecha = @fechaini -- Establece la fecha que deseas evaluar
+
+DECLARE @PrimerDia AS DATE = DATEADD(DAY, 1, EOMONTH(@Fecha, -1)); -- Primer día del mes actual
+DECLARE @MitadDelMes AS DATE = DATEADD(DAY, 14, @PrimerDia); -- Día que marca la mitad del mes
+
+
+
+if @frecuencia = 'Quincenal'
+begin
+IF @Fecha <= @MitadDelMes
+    set @semana = 1
+ELSE
+   set @semana = 2
+
+end
+
+if @frecuencia = 'Mensual'
+begin
+set @semana =  DATEPART(wk, @fechaini) 
+
+end
+
+
+if @frecuencia = 'Semanal'
+begin
+set @semana = 1
+
+end
+
+
+set @mes = datepart( MONTH , @fechaini)
+set @Aniocontable = datepart( YEAR , @fechaini)
+set @tippagcueid = concat(@Aniocontable,@mes,@semana)
+
+
+update PeriodoContable
+set 
+fechaini  = @fechaini,
+fechafin = @fechafin,
+fechapago = @fechapago ,
+fechacorte = @fechacorte ,
+frecuencia = @semana , 
+  tippagcueid =  @tippagcueid,
+--estado =  @estado ,
+--@idperempresa int ,
+usuariomodifica = @usuariocreacion ,
+fechamodificacion = GETDATE()
+ 
+
+where id = @id
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[PeriodoContableshow]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE procedure [dbo].[PeriodoContableshow]
+as
+begin
+
+select
+per.id,	tippagcueid,	per.fechaini,	per.fechafin,
+fechapago,	fechacorte,	frecuencia,
+mes,	Aniocontable	,per.estado,	idperempresa,
+per.activo,	per.usuariocreacion,	per.fechacreacion,
+per.usuariomodifica,	per.fechamodificacion,  isnull(perfis.fechaini, '1900-01-01') as fisini, isnull( perfis.fechafin,  '1900-01-01') as fisfin
+from PeriodoContable  per
+left join periodofiscal perfis on perfis.id = per.perfiscalid
+where per.activo = 1 
+and per.estado in ('Generado') 
+
+
+
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[PeriodoContableshowtodos]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create procedure [dbo].[PeriodoContableshowtodos]
+as
+begin
+
+select
+id,	tippagcueid,	fechaini,	fechafin,
+fechapago,	fechacorte,	frecuencia,
+mes,	Aniocontable	,estado,	idperempresa,
+activo,	usuariocreacion,	fechacreacion,
+usuariomodifica,	fechamodificacion
+from PeriodoContable where activo = 1 
+--and estado in ('Generado') 
+
+
+
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[periodofiscaladd]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[periodofiscaladd]
+(
+
+@fechaini date,
+@fechafin date,
+@idempresa int, 
+@usuariocreacion varchar(100)
+)
+as
+begin
+
+insert into periodofiscal
+(
+		fechaini,	fechafin,
+estado,	idempresa,	activo	,
+usuariocreacion,	fechacreacion	,
+usuariomodifica	,fechamodificacion
+)
+values
+(
+  @fechaini, @fechafin,
+ 'Generado',@idempresa, 1,
+ @usuariocreacion, GETDATE(),
+ null, null
+
+)
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[periodofiscalcierre]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[periodofiscalcierre]
+(
+@id int ,
+@usuariocreacion varchar(100)
+)
+as
+begin
+
+update periodofiscal
+set estado = 'CERRADO',
+usuariomodifica = @usuariocreacion,
+fechamodificacion = GETDATE()
+where id =  @id 
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[periodofiscaldel]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE procedure [dbo].[periodofiscaldel]
+(
+@id int ,
+@usuariocreacion varchar(100)
+)
+as
+
+begin
+
+update periodofiscal
+set activo = 0 ,
+usuariomodifica = @usuariocreacion,
+fechamodificacion = GETDATE()
+where id = @id
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[periodofiscalshow]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[periodofiscalshow]
+as
+begin
+select
+id,	fechaini,	fechafin,
+estado,	idempresa,	activo	,usuariocreacion,	fechacreacion	,
+usuariomodifica	,fechamodificacion
+from periodofiscal
+where activo = 1 
+and estado = 'Generado'
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[periodoinformeestperiodo]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[periodoinformeestperiodo]
+(
+@fechainforme date
+)
+as
+begin
+
+declare @cantidad int = 0
+
+select @cantidad = count(*)  from periodoinforme inf
+inner join PeriodoContable con on con.id = inf.idperiodo  and
+ @fechainforme  between  con.fechaini and con.fechafin
+where  fechainforme >= @fechainforme 
+and inf.activo = 1
+
+select @cantidad
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[periodonogenerado]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[periodonogenerado]
+(
+@fechaini date
+)
+as
+begin
+
+declare @cantidad int 
+
+select  @cantidad = count(*) from PeriodoContable
+where @fechaini between
+ fechaini and 	fechafin
+ and estado = 'Generado'
+ and activo = 1 
+
+ select @cantidad
+ end
+GO
+/****** Object:  StoredProcedure [dbo].[periodosaldohisperiodos]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create procedure [dbo].[periodosaldohisperiodos]
+(
+@perid int 
+)
+as
+begin 
+
+select saldo.id, saldo.percueid, cue.cuentacontable, cue.descripcion, saldo.valorcuenta from periodosaldohis saldo
+inner join cuenta cue on cue.id = saldo.percueid
+where saldo.perid = @perid
+
+end
+
+GO
+/****** Object:  StoredProcedure [dbo].[periodosmovimientos]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[periodosmovimientos]
+(
+@id int ,
+@idperiodo int ,
+@fechainforme datetime,
+@usuariocreacion varchar(100),
+@estado varchar(20)
+)
+as
+begin
+
+if @estado = 'Desabilitar'
+begin
+insert into periodoinforme
+(
+
+idperiodo ,
+fechainforme ,
+activo  ,
+usuariocreacion ,
+fechacreacion ,
+usuariomodificacion ,
+fechamodifico 
+
+)
+values
+(
+
+@idperiodo ,
+@fechainforme,
+1 ,
+@usuariocreacion ,
+getdate(),
+null,
+null
+
+)
+end
+
+else
+begin
+update periodoinforme
+set activo = 0 ,
+usuariomodificacion  =  @usuariocreacion,
+fechamodifico = getdate()
+
+where idperiodo = @idperiodo
+
+ 
+
+end
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[proveedoresadd]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[proveedoresadd]
+(
+
+@NombreCia [varchar](1000) NULL,
+	@NombreContacto [varchar](1000) NULL,
+	@email [varchar](1000) NULL,
+	@Telefono [varchar](1000) NULL,
+	@RTN [varchar](1000) NULL,
+--	@Activo [bit] NULL,
+	@Direccion [varchar](3000) NULL,
+	@ProIdEmpresa [int] NULL,
+	--@FechaCreacion [date] NULL,
+	@Deuda [decimal](10, 4) NULL,
+	@ProtipMon [int] NULL,
+	@usuariocreacion [varchar](100) NULL,
+	@subcuentaid int 
+)
+as
+begin
+
+insert into proveedores
+(
+NombreCia  ,
+	NombreContacto ,
+	email  ,
+	Telefono ,
+	RTN ,
+	Activo ,
+	Direccion ,
+	ProIdEmpresa ,
+	FechaCreacion ,
+	Deuda ,
+	ProtipMon ,
+	usuariocreacion ,
+		[fechamodificacion] ,
+	[usuariomodifico],
+	subcueidpro
+
+)
+values
+(
+@NombreCia  ,
+	@NombreContacto ,
+	@email  ,
+	@Telefono ,
+	@RTN ,
+	1 ,
+	@Direccion ,
+	@ProIdEmpresa ,
+	getdate() ,
+	@Deuda ,
+	@ProtipMon ,
+	@usuariocreacion ,
+	null,
+	null,
+	@subcuentaid
+
+)
+
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[proveedoresdelete]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create procedure [dbo].[proveedoresdelete]
+(
+@Id bigint   NULL,
+@usuariocreacion [varchar](100) NULL
+)
+as
+begin
+
+update proveedores
+set
+	[fechamodificacion] = GETDATE() ,
+	[usuariomodifico] = @usuariocreacion ,
+Activo  = 0 
+
+where 
+id = @id
+
+end
+
+GO
+/****** Object:  StoredProcedure [dbo].[proveedoresedit]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[proveedoresedit]
+(
+
+@Id bigint   NULL,
+@NombreCia [varchar](1000) NULL,
+	@NombreContacto [varchar](1000) NULL,
+	@email [varchar](1000) NULL,
+	@Telefono [varchar](1000) NULL,
+	@RTN [varchar](1000) NULL,
+	--@Activo [bit] NULL,
+	@Direccion [varchar](3000) NULL,
+	@ProIdEmpresa [int] NULL,
+	--@FechaCreacion [date] NULL,
+	@Deuda [decimal](10, 4) NULL,
+	@ProtipMon [int] NULL,
+	@usuariocreacion [varchar](100) NULL,
+	@subcuentaid int 
+)
+as
+begin
+
+update proveedores
+set
+NombreCia =@NombreCia  ,
+	NombreContacto = @NombreContacto ,
+	email  = @email,
+	Telefono = @Telefono ,
+	RTN = @RTN,
+	--Activo = @Activo ,
+	Direccion = @Direccion ,
+	--ProIdEmpresa  ,
+	Deuda = @Deuda ,
+	ProtipMon = @ProtipMon ,
+		fechamodificacion = getdate() ,
+	usuariomodifico = @usuariocreacion,
+	subcueidpro =@subcuentaid  
+
+where id = @Id
+
+end
+
+GO
+/****** Object:  StoredProcedure [dbo].[proveedorespagacuenta]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create procedure [dbo].[proveedorespagacuenta]
+(
+@subcueidcli int, 
+@abono decimal(10,4)
+)
+as
+begin
+update proveedores
+set
+Deuda =  Deuda - @abono
+where 
+subcueidpro= @subcueidcli
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[proveedoresshow]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[proveedoresshow]
+as
+begin
+ select 
+ pro.Id,	NombreCia,	NombreContacto,	email,
+ Telefono,	RTN,	pro.Activo,	Direccion,
+ ProIdEmpresa,	pro.FechaCreacion,	Deuda,
+  mon.Descripcion as moneda,	pro.usuariocreacion,	pro.fechamodificacion,
+ pro.usuariomodifico , subcue.Cuentacontablesub as subcue ,  subcue.Descripcion as cuenta
+
+ from proveedores pro
+  inner join tipomoneda mon on mon.id = ProtipMon
+  left join  subcuenta subcue on  subcue.id = pro.subcueidpro
+   where pro.activo = 1 
+
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[proveedoressubcueshow]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+create procedure [dbo].[proveedoressubcueshow]
+(
+@id int
+)
+as
+begin
+select subcueidpro from proveedores
+where id = @id
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[rolesopcionesevento]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create procedure [dbo].[rolesopcionesevento]
+(
+@ind int ,
+ @id bigint ,
+ @usuid bigint,
+ @rolid bigint 
+)
+as
+begin
+
+
+
+if @ind = 1
+begin
+
+insert into rolesopciones
+(
+idrol	,IdOpcion,	Activo
+
+)
+values
+(
+@rolid, @usuid,1
+)
+end
+
+else if  @ind = 2
+begin
+
+update rolesopciones
+set 
+Activo = 0 
+where id = @id
+
+end
+
+end
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[rolesopcionesshow]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE procedure [dbo].[rolesopcionesshow]
+as
+begin
+
+select rolopc.id, opc.Nombre, ro.descripcion  from rolesopciones rolopc
+inner join Opciones opc on opc.Id =  rolopc.IdOpcion
+inner join rol ro on ro.rolid = rolopc.idrol
+
+where rolopc.Activo = 1
+
+
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[showCCuenta]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[showCCuenta]
+as
+begin
+
+select 
+cue.Id,	CuentaContable,	concat( cue.Descripcion,'-', CuentaContable) as Descripcion,	cla.TipoCuenta ,	CuentaTipo,	mon.Moneda as Moneda,
+CueIdEmpresa,	cue.Activo
+from Cuenta cue
+inner join TipoMoneda mon on mon.Id = cue.MonedaId
+inner join ClasificacionCuenta cla on cla.Id = cue.ClaseCuentaId
+
+
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[showClasificacionCuenta]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+create procedure [dbo].[showClasificacionCuenta]
+as
+begin
+
+select Id , Clase , TipoCuenta, Naturaleza, Activo, ClaIdempresa   from ClasificacionCuenta
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[showcliente]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE procedure [dbo].[showcliente] 
+
+as
+begin
+select 
+  id ,
+	 concat (   replace( primernombre, ' ', '' ) , ' ',
+	 replace( [segundonombre] , ' ', '') , ' ',
+	[primerapellido] , ' ',
+	[segundoapellido] ) as nombre ,
+	[estado] ,
+	[fechaIngreso] ,
+	[fechaRetiro] ,
+	[dni] ,
+	[usuario] ,
+	[clave],
+	[preguntaSeguridad] ,
+	[RespuestaSeguridad] ,
+	[telefono],
+	[sexo] ,
+	rol.descripcion as rol ,
+	[intentos] 
+	from 
+	usuario
+	inner join rol on rol.rolid = usuario.idrol 
+	where estado = 'A'
+
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[showrol]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[showrol]
+as
+begin
+select 
+rolid,descripcion, activo ,roldEmpresa
+from rol
+where activo = 1
+end
+GO
+/****** Object:  StoredProcedure [dbo].[showTipoMoneda]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE procedure [dbo].[showTipoMoneda]
+as
+begin
+select Id, Descripcion, Simbolo , PaisIsob, PaisIsoc , Moneda , MonIdEmpresa from TipoMoneda
+where activo = 1
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[subcuentaadd]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE procedure  [dbo].[subcuentaadd]
+(
+@Cuentacontablesub varchar(100),
+@Descripcion varchar(300),
+@CuentaId int ,
+@SubCueIdEmpresa int,
+@usuariocreacion varchar(20)
+)
+as
+begin
+
+
+insert into  subcuenta
+(
+Cuentacontablesub ,
+Descripcion ,
+CuentaId  ,
+SubCueIdEmpresa ,
+Activo,
+usuariocreacion,
+fechacreacion
+
+)
+values
+(
+@Cuentacontablesub ,
+@Descripcion ,
+@CuentaId  ,
+@SubCueIdEmpresa ,
+1,
+@usuariocreacion,
+getdate()
+)
+
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[subcuentaid]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create procedure [dbo].[subcuentaid]
+(
+@Cuentacontablesub varchar(100),
+@CuentaId int ,
+@usuariocreacion varchar(20)
+)
+as
+begin
+select id from subcuenta
+where  Cuentacontablesub = @Cuentacontablesub
+--and CuentaId  = @CuentaId
+and usuariocreacion = @usuariocreacion 
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[subcuentaidcuenta]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create procedure [dbo].[subcuentaidcuenta]
+(
+@id int 
+)
+as
+begin
+select CuentaId from subcuenta
+where  id = @id
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[subcuentashowid]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create procedure [dbo].[subcuentashowid]
+(
+@Cuentacontablesub varchar(100),
+@CuentaId int ,
+@usuariocreacion varchar(20)
+)
+as
+begin
+select id from subcuenta
+where  Cuentacontablesub = @Cuentacontablesub
+and CuentaId  = @CuentaId
+and usuariocreacion = @usuariocreacion 
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[subcueshow]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create procedure [dbo].[subcueshow]
+(
+@id int
+)
+as
+begin
+select subcueidpro from proveedores
+where id = @id
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[TipoMonedaadd]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create procedure [dbo].[TipoMonedaadd]
+(
+ @Descripcion varchar(100),
+ @Simbolo  varchar(10),
+ @PaisIsob varchar(10),
+ @PaisIsoc varchar(10) ,
+ @Moneda varchar(10) ,
+ @MonIdEmpresa int ,
+ @usuariocreacion varchar(100)
+)
+as
+begin
+insert into TipoMoneda
+(
+Descripcion,
+Simbolo,
+PaisIsob,
+PaisIsoc,
+Moneda,
+MonIdEmpresa,
+Activo,
+usuariocreacion ,
+fechacreacion 
+
+)
+values(
+@Descripcion,
+@Simbolo,
+@PaisIsob,
+@PaisIsoc,
+@Moneda,
+@MonIdEmpresa,
+1,
+@usuariocreacion ,
+getdate()  
+)
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[TipoMonedadel]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE procedure [dbo].[TipoMonedadel]
+(
+@Id int ,
+ @usuariocreacion varchar(100)
+)
+as
+
+begin
+update TipoMoneda
+set activo = 0,
+usuariomodifico  = @usuariocreacion,
+fechamodificacion = GETDATE()
+where Id = @Id
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[TipoMonedalocal]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE procedure [dbo].[TipoMonedalocal]
+(
+@idcuenta int 
+)
+as
+begin
+
+declare @monedaid int = 0 
+
+select  @monedaid =MonedaId from Cuenta
+where id =  @idcuenta
+
+declare @moneda varchar(3)
+
+select @moneda = moneda  from TipoMoneda
+where id = @monedaid
+
+select @moneda
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[TipoPagogetcuenta]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create procedure [dbo].[TipoPagogetcuenta]
+(
+@id int 
+)
+as
+begin
+ select tippagcueid from TipoPago
+ where id = @id
+
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[TipoPagoshow]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE procedure [dbo].[TipoPagoshow]
+as
+begin
+
+select id, concat(descripcion,' ',   cuenta) as pago from TipoPago
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[tipoTransaccionesadd]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+create procedure [dbo].[tipoTransaccionesadd]
+(
+  @id varchar(100)  ,
+  @descripcion varchar(1000),
+  @ttraidempresa int 
+)
+as
+begin
+insert into tipoTransacciones
+(
+id,	descripcion,	activo, ttraidempresa
+)
+values
+(
+@id, @descripcion, 1, @ttraidempresa
+
+)
+
+end
+
+GO
+/****** Object:  StoredProcedure [dbo].[tipoTransaccionessdel]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+create procedure [dbo].[tipoTransaccionessdel]
+ @id varchar(100) 
+as
+begin
+
+
+ update tipoTransacciones
+ set activo = 0 
+ where id = @id
+end
+GO
+/****** Object:  StoredProcedure [dbo].[tipoTransaccionesshow]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[tipoTransaccionesshow]
+as
+begin
+
+ select
+ id,	descripcion,	activo, ttraidempresa
+ from tipoTransacciones
+ where activo = 1
+
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[TransaccionAdd]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create procedure [dbo].[TransaccionAdd]
+(
+@TraParId int, 
+@TipoTransaccion varchar(100),
+@TraIdEmpresa int ,
+@UsuarioCreacion varchar(100)
+)
+as
+begin
+
+
+  insert into transacciones
+  (
+  TraParId,
+  TipoTransaccion,
+  TraIdEmpresa,
+  UsuarioCreacion,
+  FechaCreacion
+
+  )
+  values
+
+  (
+    @TraParId,
+  @TipoTransaccion,
+  @TraIdEmpresa,
+  @UsuarioCreacion,
+  getdate()
+
+  )
+
+
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[usuarioactualiza]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create procedure [dbo].[usuarioactualiza]
+(
+@id bigint ,
+@primernombre varchar(20) NULL,
+	@segundonombre varchar(20) NULL,
+	@primerapellido varchar(29) NULL,
+	@segundoapellido varchar(29) NULL,
+	@fechaIngreso date NULL,
+	@dni varchar(20) NULL,
+	@preguntaSeguridad varchar(2000) NULL,
+	@telefono varchar(20) NULL,
+	@sexo varchar(1) NULL,
+	@intentos int NULL
+	
+)
+as
+begin
+
+update usuario
+set primernombre = @primernombre,
+segundonombre = @segundonombre,
+primerapellido = @primerapellido,
+segundoapellido = @segundoapellido,
+fechaIngreso = @fechaIngreso,
+dni = @dni,
+preguntaSeguridad =@preguntaSeguridad,
+telefono = @telefono,
+sexo = @sexo 
+
+where id = @id
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[usuariorolesshow]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create procedure [dbo].[usuariorolesshow]
+
+as
+begin
+
+ select usurol.Id, usu.usuario,   ro.descripcion from usuarioroles usurol
+ inner join usuario usu on usu.id = usurol.UsuarioId
+ inner join rol ro on ro.rolid = usurol.ROlidUsu
+
+ where usurol.Activo = 1
+
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[usurolevento]    Script Date: 2023-11-22 10:54:42 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create procedure [dbo].[usurolevento]
+(
+@ind int ,
+ @id bigint ,
+ @usuid bigint,
+ @rolid bigint 
+)
+as
+begin
+
+if @ind = 1
+begin
+
+insert into usuarioroles
+(
+
+	UsuarioId,
+ROlidUsu,	Activo
+
+)
+values
+(
+ @usuid,
+@rolid, 1
+
+)
+
+end
+
+
+else if @ind = 2 
+begin
+update usuarioroles
+set activo = 0 
+where 
+id = @id
+
+
+end
+
+
+end
+GO
+USE [master]
+GO
+ALTER DATABASE [ordenacuenta] SET  READ_WRITE 
+GO
